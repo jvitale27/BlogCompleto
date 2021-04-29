@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Category;
+use App\Models\Tag;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,8 +14,20 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+
+    public function run()		//cuando ejecuto "php artisan db:seed" se generan estos registros en la tabla
     {
-        // \App\Models\User::factory(10)->create();
+    	Storage::deleteDirectory('posts');	//borro la carpeta public/storage/posts donde almaceno imagenes
+    	Storage::makeDirectory('posts');	//creo la carpeta public/storage/posts donde almaceno imagenes
+
+    	//utilizacion de seeders para crear registros. Archivos database\seeders 
+        $this->call(UserSeeder::class);
+
+    	//utilizacion de Factories para crear registros. Archivos database\factories 
+         Category::factory(4)->create();
+         Tag::factory(8)->create();
+
+    	//utilizacion de seeders para crear registros. Archivos database\seeders 
+         $this->call(PostSeeder::class);
     }
 }
