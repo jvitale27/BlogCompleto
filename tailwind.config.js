@@ -23,4 +23,10 @@ module.exports = {
     },
 
     plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+
+//deshabilito la clase container que viene con tailwind
+    corePlugins: {
+      // ...
+     container: false,
+    },
 };

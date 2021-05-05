@@ -25,8 +25,9 @@ class TagFactory extends Factory
         $name = $this->faker->unique()->word(20);       //nombre falso
 
         return [
-            'name'        => $name,
-            'slug'        => Str::slug($name)        //genero la url amigable, cambio ' ' por '-'
+            'name'  => $name,
+            'slug'  => Str::slug($name),        //genero la url amigable, cambio ' ' por '-'
+            'color' =>$this->faker->randomElement(['red', 'yellow', 'green', 'blue', 'indigo', 'purple', 'pink'])
         ];
     }
 }
