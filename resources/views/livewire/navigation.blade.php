@@ -19,7 +19,7 @@
                             <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
 -->
               @foreach ($categories as $category)
-                <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ $category->name }}</a>
+                <a href="{{ route('posts.category', $category) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ $category->name }}</a>
               @endforeach
 
             </div>
@@ -27,10 +27,10 @@
         </div>
 
 	     	<!-- notificacion y perfil -->
-        <!-- directiva de blade para saber si esta autentificado -->
         <div class="hidden md:block">
           <div class="ml-4 flex items-center md:ml-6">
 
+            <!-- directiva de blade para saber si esta autentificado -->
             @auth
         			<!-- boton notificacion -->
               <button class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
@@ -115,7 +115,7 @@
                 <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Dashboard</a>
  -->
         @foreach ($categories as $category)
-          <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">{{ $category->name }}</a>
+          <a href="{{ route('posts.category', $category) }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">{{ $category->name }}</a>
         @endforeach
       </div>
       @auth
