@@ -6,11 +6,11 @@
 	     	<!-- Menu -->
         <div class="flex items-center">
 		      <!-- logotipo -->
-          {{-- <div class="flex-shrink-0"> --}}
-          <a href="/" class="flex-shrink-0">
-            <img class="h-8 w-8" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow">
-          {{-- </div> --}}
+           <a href="/" class="flex">
+              <img class="h-8 w-8 object-cover object-center" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="">
+              <span class="ml-3 text-2xl font-bold text-white">workflow</span>
           </a>
+           
 	     	  <!-- menu lg -->
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
