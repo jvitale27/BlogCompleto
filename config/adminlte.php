@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>JULA',
+    'logo' => '<b>AdminLTE</b>JULA',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -252,7 +252,8 @@ return [
 //            'url'  => 'admin/settings',
             'text' => 'Categorias',
             'route'  => 'admin.categories.index',
-            'icon' => 'fas fa-fw fa-user',
+//            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fab fa-fw fa-buffer',        //extraido de www.fontawesome.com
         ],
         [
             'text' => 'change_password',

@@ -1,3 +1,5 @@
+{{-- AdminLTE lleva codigo de BOOTSTRAP, no de Tailwind --}}
+
 @extends('adminlte::page')
 
 @section('title', 'Administracion')

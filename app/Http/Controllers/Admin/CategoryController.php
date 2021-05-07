@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
+
 class CategoryController extends Controller
 {
     /**
@@ -15,7 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.categories.index');
+        $categories = Category::all();
+
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -36,7 +39,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([                    //validacion del request
+            'name' => 'required',
+            'slug' => 'required|unique:categories'
+        ]);
+
+       $category = Category::create( $request->all());   //insercion masiva en la BD,
+                                                    //todo lo util de request y que es fillable.
+
+        return redirect()->route('admin.categories.edit', $category)
+                           ->with('info', 'La categoría se creó con éxito');      //mensaje de sesion
+
     }
 
     /**
@@ -70,7 +83,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([                    //validacion del request
+            'name' => 'required',
+            'slug' => "required|unique:categories,slug,$category->id"   //unico, sin tener en cta el actual slug
+        ]);
+
+       $category->update( $request->all());   //insercion masiva en la BD,
+                                                    //todo lo util de request y que es fillable.
+
+        return redirect()->route('admin.categories.edit', $category)
+                           ->with('info', 'La categoría se actualizó con éxito');      //mensaje de sesion
     }
 
     /**
@@ -81,6 +103,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return redirect()->route('admin.categories.index')
+                           ->with('info', 'La categoría se eliminó con éxito');      //mensaje de sesion
     }
 }
