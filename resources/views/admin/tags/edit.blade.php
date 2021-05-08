@@ -5,7 +5,7 @@
 @section('title', 'Administracion')
 
 @section('content_header')
-    <h1>Crear nueva categoria</h1>
+    <h1>Editar etiqueta</h1>
 @stop
 
 @section('content')
@@ -17,14 +17,17 @@
 		</div>
 	@endif
 
-	<div class="card">
+    <div class="card">
     	<div class="card-body">
-    		{!! Form::open(['route' => 'admin.categories.store']) !!}	{{-- formulario de collective --}}
+    		{!! Form::model($tag, ['route' => ['admin.tags.update', $tag], 'method' => 'put']) !!}	{{-- formulario de collective --}}
 
-                {{-- incluyo la plantilla en comun --}}
-                @include('admin.categories.partials.form')
+                {{-- incluyo la plantilla en comun
+                    @include('admin.tags.partials.form', ['color' => $tag->color]
+                    o tambien asi --}}
+                {{ $color =  $tag->color}}
+                @include('admin.tags.partials.form')
 
-    			{!! Form::submit('Crear Categoria', ['class' => 'btn btn-primary']) !!}
+    			{!! Form::submit('Actualizar Etiqueta', ['class' => 'btn btn-primary']) !!}
 
     		{!! Form::close() !!}
     	</div>

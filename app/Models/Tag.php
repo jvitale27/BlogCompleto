@@ -10,6 +10,18 @@ class Tag extends Model
 {
     use HasFactory;
 
+    /**
+     * Fields that can be mass assigned.
+     *
+     * @var array
+     */
+    protected $fillable = ['name', 'slug', 'color'];
+
+    /* esta funcion hace que las urls se formen acon el slug y no con id de una dada categoria */
+    public function getRouteKeyName(){
+        return 'slug';
+    }
+
     //relacion muchos a muchos
     public  function posts(){                              //metodo que me devuelve los posts de un tag
 //        $posts = Role::find($this->tag_id);

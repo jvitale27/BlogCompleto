@@ -85,7 +85,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
+//    'layout_fixed_sidebar' => null,
+    'layout_fixed_sidebar' => true,         //al scrolar la pagina no scrola la barra/menu lateral
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
 
@@ -188,7 +189,7 @@ return [
 
     'use_route_url' => false,
 //    'dashboard_url' => 'home',
-    'dashboard_url' => '/',
+    'dashboard_url' => '/',                 //para que retorne a home /
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -239,26 +240,32 @@ return [
 //            'text'        => 'pages',
 //            'url'         => 'admin/pages',
 //            'icon'        => 'far fa-fw fa-file',
-            'text'        => 'Dashboard',
-            'url'         => 'admin',
-            'icon'        => 'fas fa-tachometer-alt fa-fw',     //extraido de www.fontawesome.com
+            'text' => 'Dashboard',
+            'url'  => 'admin',
+            'icon' => 'fas fa-tachometer-alt fa-fw',     //extraido de www.fontawesome.com
 //            'label'       => 4,
 //            'label_color' => 'success',
         ],
+
 //        ['header' => 'account_settings'],
         ['header' => 'ADMINISTRADOR'],
         [
 //            'text' => 'profile',
 //            'url'  => 'admin/settings',
-            'text' => 'Categorias',
-            'route'  => 'admin.categories.index',
 //            'icon' => 'fas fa-fw fa-user',
-            'icon' => 'fab fa-fw fa-buffer',        //extraido de www.fontawesome.com
+            'text'   => 'Categorias',
+            'route'  => 'admin.categories.index',
+            'icon'   => 'fab fa-fw fa-buffer',        //extraido de www.fontawesome.com
+            'active' => ['admin/categories*'],           //mantener el link pintado(activo) en esas urls
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+//            'text' => 'change_password',
+//            'url'  => 'admin/settings',
+//            'icon' => 'fas fa-fw fa-lock',
+            'text'   => 'Etiquetas',
+            'route'  => 'admin.tags.index',
+            'icon'   => 'far fa-fw fa-bookmark',      //extraido de www.fontawesome.com
+            'active' => ['admin/tags*'],           //mantener el link pintado(activo) en esas urls
         ],
         [
             'text'    => 'multilevel',

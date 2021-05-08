@@ -85,7 +85,7 @@ class CategoryController extends Controller
     {
         $request->validate([                    //validacion del request
             'name' => 'required',
-            'slug' => "required|unique:categories,slug,$category->id"   //unico, sin tener en cta el actual slug
+            'slug' => "required|unique:categories,slug,$category->id"   //unico, sin tener en cta el actual slug.
         ]);
 
        $category->update( $request->all());   //insercion masiva en la BD,
