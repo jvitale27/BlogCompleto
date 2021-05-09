@@ -9,6 +9,8 @@ use App\Models\Category;
 use App\Models\Tag;
 use App\Http\Requests\StorePostRequest;
 
+use Illuminate\Support\Facades\Storage;
+
 
 class PostController extends Controller
 {
@@ -54,6 +56,10 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         /* Hace las validaciones de tipo request, en app\Http\Request\StorePostReques.php */
+
+        //al seleccionar un archivo desde un formulario, este se copia a la carpeta xampp\tmp
+        //este metodo copia el archivo seleccionado (que esta en xampp\tmp) a la carpeta storage\posts
+        Storage::put('posts', $request->file('file'));
 
        $post = Post::create( $request->all());   //insercion masiva en la BD,
                                                     //todo lo util de request y que es fillable.

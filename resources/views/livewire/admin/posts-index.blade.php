@@ -21,8 +21,8 @@
 	    			<tbody>
 	    				@foreach ($posts as $post)
 	    					<tr>
-	    						<td>{{ $post->id }}</td>
-	    						<td>{{ $post->name }}</td>
+	    						<td>{!! $post->id !!}</td>
+	    						<td>{!! $post->name !!}</td>
 
 	    						<td width="10px">
 	    							<a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-primary btn-sm">Editar</a>

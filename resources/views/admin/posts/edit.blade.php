@@ -1,4 +1,13 @@
 {{-- AdminLTE lleva codigo de BOOTSTRAP y de Tailwind --}}
+
+
+
+
+
+
+
+
+
 @extends('adminlte::page')
 
 @section('title', 'Administracion')
@@ -19,7 +28,7 @@
     <div class="card">
     	<div class="card-body">
             {{-- Abro un formulario 'model' para que se completen los campos con los valores de post --}}
-    		{!! Form::model($post, ['route' => ['admin.posts.update', $post], 'method' => 'put']) !!}	{{-- formulario de collective --}}
+    		{!! Form::model([$post,$categories,$tags], ['route' => ['admin.posts.update', $post], 'method' => 'put']) !!}	{{-- formulario de collective --}}
 
                 {{-- incluyo la plantilla en comun --}}
                 @include('admin.posts.partials.form')
@@ -29,6 +38,10 @@
     		{!! Form::close() !!}
     	</div>
     </div>
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 {{-- esta seccion javascript me crea el slug dinamicamente a medida que tipeo en name. --}}

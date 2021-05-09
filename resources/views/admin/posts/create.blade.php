@@ -1,11 +1,4 @@
 {{-- AdminLTE lleva codigo de BOOTSTRAP y de Tailwind --}}
-
-
-
-
-
-
-
 @extends('adminlte::page')
 
 @section('title', 'Administracion')
@@ -25,8 +18,8 @@
 
 	<div class="card">
     	<div class="card-body">
-            {{-- Abro un formulario con 'open' con campos vacios --}}
-    		{!! Form::open(['route' => 'admin.posts.store', 'autocomplete' => 'off']) !!}	{{-- formulario de collective --}}
+            {{-- Abro un formulario con 'open' con campos vacios. files' habilita el envio de archivos como objetos --}}
+    		{!! Form::open(['route' => 'admin.posts.store', 'autocomplete' => 'off', 'files' => true]) !!}	{{-- formulario de collective --}}
 
                 {{-- incluyo la plantilla en comun
                     @include('admin.posts.partials.form', ['category_id' => null]
@@ -39,6 +32,21 @@
     		{!! Form::close() !!}
     	</div>
     </div>
+@stop
+
+@section('css')
+    <style>
+    	.image-wrapper{
+    		position: relative;
+    		padding-bottom: 56.25%;
+    	}
+    	.image-wrapper img{
+    		position: absolute;
+    		object-fit: cover;
+    		width: 100%;
+    		height: 100%;
+    	}
+    </style>
 @stop
 
 {{-- esta seccion javascript me crea el slug dinamicamente a medida que tipeo en name. --}}
@@ -71,6 +79,21 @@
         .catch( error => {
             console.error( error );
         } );
+    </script>
 
+    {{-- cambio dinamico de la imagen seleccionada mediante archivo. La imagen con propiedad id="picture" esta en form.blade.php --}}
+    <script>
+	    document.getElementById("file").addEventListener('change', cambiarImagen);
+
+	        function cambiarImagen(event){
+	            var file = event.target.files[0];
+
+	            var reader = new FileReader();
+	            reader.onload = (event) => {
+	                document.getElementById("picture").setAttribute('src', event.target.result);
+	            };
+
+	            reader.readAsDataURL(file);
+	        }
     </script>
 @stop

@@ -4,11 +4,13 @@
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
 			@foreach ($posts as $post)
-				<article class="w-full h-80 bg-cover bg-center
+				<article class="w-full h-80 bg-cover bg-center bg-gray-700 
 				@if ($loop->first) 						{{-- ejemplo de if dentro de clase --}}
 					md:col-span-2
 				@endif"
-				style="background-image: url({{ Storage::url($post->image->url) }})">
+				@if ($post->image)			{{-- si el post tiene imagen, entonces imagen de fondo --}}
+					style="background-image: url({{ Storage::url($post->image->url) }})"
+				@endif>
 					<div class="w-full h-full px-8 flex flex-col justify-center">
 
 						<div>
@@ -21,7 +23,7 @@
 
 						<h1 class="text-4xl text-white leading-8 font-bold mt-3">
 							<a href="{{ route('posts.show', $post) }}">
-								{{ $post->name }}
+								{!! $post->name !!}
 							</a>
 						</h1>
 					</div>

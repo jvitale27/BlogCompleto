@@ -2,14 +2,18 @@
 @props(['post'])
 
 <article class="mb-8 bg-white shadow-lg rounded-lg overflow-hidden">
-	<img class="w-full h-72 object-cover object-center" src="{{ Storage::url($post->image->url) }}" alt="">
+	<img class="w-full h-72 object-cover object-center bg-gray-700"
+	@if ($post->image)			{{-- si el post tiene imagen, entonces imagen de fondo --}}
+		src="{{ Storage::url($post->image->url) }}"
+	@endif
+	 alt="">
 
 	<div class="px-6 py-4">
 		<h1 class="font-bold text-xl mb-2">
-			<a href="{{ route('posts.show', $post) }}">{{ $post->name }}</a>
+			<a href="{{ route('posts.show', $post) }}">{!! $post->name !!}</a>
 		</h1>
 		<div class="text-gray-700 text-base">
-			{{ $post->extract }}
+			{!! $post->extract !!}
 		</div>
 	</div>
 
