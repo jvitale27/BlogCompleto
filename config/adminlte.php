@@ -189,7 +189,7 @@ return [
 
     'use_route_url' => false,
 //    'dashboard_url' => 'home',
-    'dashboard_url' => '/',                 //para que retorne a home /
+    'dashboard_url' => '/',                 //para que retorne a home '/'
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -267,7 +267,7 @@ return [
             'icon'   => 'far fa-fw fa-bookmark',      //extraido de www.fontawesome.com
             'active' => ['admin/tags*'],           //mantener el link pintado(activo) en esas urls
         ],
-        [
+        [                                           /* este de abajo solo lo dejo a modo de ejemplo */
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
@@ -305,21 +305,20 @@ return [
                 ],
             ],
         ],
-        ['header' => 'labels'],
+        ['header' => 'OPCIONES DE BLOG'],
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
+            'text'  => 'Lista de posts',
+            'route' => 'admin.posts.index',
+            'icon'  => 'fas fa-fw fa-clipboard',     //extraido de www.fontawesome.com
+//            'icon_color' => 'red',
+//            'url'        => '#',
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'text'  => 'Crear nuevo post',
+            'route' => 'admin.posts.create',
+            'icon'  => 'fas fa-fw fa-file',          //extraido de www.fontawesome.com
+//            'icon_color' => 'yellow',
+//            'url'        => '#',
         ],
     ],
 
@@ -441,5 +440,6 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Other-Configuration
     */
 
-    'livewire' => false,
+//    'livewire' => false,
+    'livewire' => true,             //habilito utilizar livewire en AdminLTE
 ];

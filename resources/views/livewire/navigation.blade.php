@@ -1,3 +1,4 @@
+{{-- Las view de Livewire SIEMPRE deben estar encerradas en un solo div padre, no puede haber mas de uno --}}
 <div>
   <nav class="bg-gray-800" x-data="{ open: false}">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -13,7 +13,7 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-        @livewireStyles
+        @livewireStyles             {{-- estilos de livewire --}}
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
@@ -23,8 +23,8 @@
 
         <div class="min-h-screen bg-gray-100">
 
-<!-- instancio el menu de livewire llamado 'navigation' que esta en la carpeta resources\views\livewire -->
-            @livewire('navigation')
+<!-- instancio el componente de livewire 'Navigation' que esta en la carpeta App\Http\Livewire\Navigation.php -->
+            @livewire('navigation')     {{-- siempre lo instancio en minusculas --}}
 
             <!-- Page Content -->
             <main>
@@ -34,6 +34,6 @@
 
         @stack('modals')
 
-        @livewireScripts
+        @livewireScripts            {{-- scripts de livewire --}}
     </body>
 </html>

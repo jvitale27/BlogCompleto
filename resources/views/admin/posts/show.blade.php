@@ -1,9 +1,11 @@
+{{-- AdminLTE lleva codigo de BOOTSTRAP y de Tailwind --}}
+
 @extends('adminlte::page')
 
 @section('title', 'Administracion')
 
 @section('content_header')
-    <h1>Administracion del blog</h1>
+    <h1>Mostrar detalle de categoria</h1>
 @stop
 
 @section('content')
