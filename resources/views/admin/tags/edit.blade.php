@@ -19,6 +19,7 @@
 
     <div class="card">
     	<div class="card-body">
+            {{-- Abro un formulario 'model' para que se completen los campos con los valores de tag --}}
     		{!! Form::model($tag, ['route' => ['admin.tags.update', $tag], 'method' => 'put']) !!}	{{-- formulario de collective --}}
 
                 {{-- incluyo la plantilla en comun

@@ -11,7 +11,7 @@
 @section('title', 'Administracion')
 
 @section('content_header')
-    <h1>Crear nueva categoria</h1>
+    <h1>Crear nuevo post</h1>
 @stop
 
 @section('content')
@@ -25,12 +25,16 @@
 
 	<div class="card">
     	<div class="card-body">
-    		{!! Form::open(['route' => 'admin.categories.store']) !!}	{{-- formulario de collective --}}
+            {{-- Abro un formulario con 'open' con campos vacios --}}
+    		{!! Form::open(['route' => 'admin.posts.store', 'autocomplete' => 'off']) !!}	{{-- formulario de collective --}}
 
-                {{-- incluyo la plantilla en comun --}}
-                @include('admin.categories.partials.form')
+                {{-- incluyo la plantilla en comun
+                    @include('admin.posts.partials.form', ['category_id' => null]
+                    o tambien asi --}}
+    			{{ $category_id = null }}
+                @include('admin.posts.partials.form')
 
-    			{!! Form::submit('Crear Categoria', ['class' => 'btn btn-primary']) !!}
+    			{!! Form::submit('Crear Post', ['class' => 'btn btn-primary']) !!}
 
     		{!! Form::close() !!}
     	</div>
@@ -41,6 +45,10 @@
 @section('js')
 	{{-- plugin 'jQuery Plugin stringToSlug' desde https://leocaseiro.com.br/jquery-plugin-string-to-slug/ --}}
     <script src="{{ asset('vendor\jQuery-Plugin-stringToSlug-1.3\jquery.stringToSlug.min.js') }}"></script>
+
+{{-- plugin desde CKEditor5 desde https://ckeditor.com/ckeditor-5/download/  para ingresar texto enriquecido--}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+
     <script>
     {{--pegado desde 'jThe values Default at Plugin Usage' https://leocaseiro.com.br/jquery-plugin-string-to-slug/--}}
     	$(document).ready( function() {
@@ -50,5 +58,19 @@
 		    	space: '-'
 		  	});
 		});
+
+{{-- plugin desde CKEditor5 desde https://ckeditor.com/ckeditor-5/download/  para ingresar texto enriquecido--}}
+        ClassicEditor
+        .create( document.querySelector( '#extract' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+{{-- plugin desde CKEditor5 desde https://ckeditor.com/ckeditor-5/download/  para ingresar texto enriquecido--}}
+        ClassicEditor
+        .create( document.querySelector( '#body' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+
     </script>
 @stop

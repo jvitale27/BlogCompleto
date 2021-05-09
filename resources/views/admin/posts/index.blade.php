@@ -5,6 +5,8 @@
 @section('title', 'Administracion')
 
 @section('content_header')
+    <a href="{{ route('admin.posts.create') }}" class="btn btn-secondary float-right">Nuevo post</a>
+
     <h1>Lista de posts de {{ auth()->user()->name }}</h1>
 @stop
 

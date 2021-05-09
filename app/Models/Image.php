@@ -9,7 +9,11 @@ class Image extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];	//declaro todos los campos sin proteccon para insercion masiva
+//cuando hay insercion masiva, solo guardo en la BD estos campos indicados aqui. Es por seguridad
+//    protected $fillable = ['name', 'slug'];
+
+//cuando hay insercion masiva, NO guardo en la BD estos campos indicados aqui. Lo contrario al anterior
+    protected $guarded = [];            //nada que proteger 
 
     public function imageable(){
 

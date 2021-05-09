@@ -24,11 +24,15 @@ class User extends Authenticatable
      *
      * @var array
      */
+//cuando hay insercion masiva, solo guardo en la BD estos campos indicados aqui. Es por seguridad
     protected $fillable = [
         'name',
         'email',
         'password',
     ];
+
+//cuando hay insercion masiva, NO guardo en la BD estos campos indicados aqui. Lo contrario al anterior
+    protected $guarded = [];            //nada que proteger 
 
     /**
      * The attributes that should be hidden for arrays.

@@ -13,6 +13,20 @@ class Post extends Model
 {
     use HasFactory;
 
+//cuando hay insercion masiva, solo guardo en la BD estos campos indicados aqui. Es por seguridad
+    protected $fillable = [
+        'name',
+        'slug',
+        'extract',
+        'body',
+        'status',
+        'user_id',
+        'category_id'];
+
+//cuando hay insercion masiva, NO guardo en la BD estos campos indicados aqui. Lo contrario al anterior
+    protected $guarded = [];            //nada que proteger 
+
+
     //relacion 1 a muchos inversa
     public  function user(){                              //metodo que me devuelve el usuario de un perfil
 //        $user = User::find($this->user_id);

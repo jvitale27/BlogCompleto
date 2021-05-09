@@ -1,16 +1,10 @@
 {{-- AdminLTE lleva codigo de BOOTSTRAP y de Tailwind --}}
-
-
-
-
-
-
 @extends('adminlte::page')
 
 @section('title', 'Administracion')
 
 @section('content_header')
-    <h1>Editar categoria</h1>
+    <h1>Editar post</h1>
 @stop
 
 @section('content')
@@ -24,12 +18,13 @@
 
     <div class="card">
     	<div class="card-body">
-    		{!! Form::model($category, ['route' => ['admin.categories.update', $category], 'method' => 'put']) !!}	{{-- formulario de collective --}}
+            {{-- Abro un formulario 'model' para que se completen los campos con los valores de post --}}
+    		{!! Form::model($post, ['route' => ['admin.posts.update', $post], 'method' => 'put']) !!}	{{-- formulario de collective --}}
 
                 {{-- incluyo la plantilla en comun --}}
-                @include('admin.categories.partials.form')
+                @include('admin.posts.partials.form')
 
-    			{!! Form::submit('Actualizar Categoria', ['class' => 'btn btn-primary']) !!}
+    			{!! Form::submit('Actualizar Post', ['class' => 'btn btn-primary']) !!}
 
     		{!! Form::close() !!}
     	</div>

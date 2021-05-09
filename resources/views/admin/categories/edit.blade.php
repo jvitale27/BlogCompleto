@@ -19,6 +19,7 @@
 
     <div class="card">
     	<div class="card-body">
+            {{-- Abro un formulario 'model' para que se completen los campos con los valores de category --}}
     		{!! Form::model($category, ['route' => ['admin.categories.update', $category], 'method' => 'put']) !!}	{{-- formulario de collective --}}
 
                 {{-- incluyo la plantilla en comun --}}

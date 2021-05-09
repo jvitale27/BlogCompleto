@@ -19,6 +19,7 @@
 
 	<div class="card">
     	<div class="card-body">
+            {{-- Abro un formulario con 'open' con campos vacios --}}
     		{!! Form::open(['route' => 'admin.tags.store']) !!}	{{-- formulario de collective --}}
 
                 {{-- incluyo la plantilla en comun
