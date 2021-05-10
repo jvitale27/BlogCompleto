@@ -55,7 +55,7 @@ class PostController extends Controller
 //    public function store(Request $request)
     public function store(PostRequest $request)
     {
-        /* Hace las validaciones de tipo request, en app\Http\Request\StorePostReques.php */
+        /* Hace las validaciones de tipo request, en app\Http\Request\PostReques.php */
 
        $post = Post::create( $request->all());   //insercion masiva en la BD,
                                                     //todo lo util de request y que es fillable.
@@ -123,17 +123,41 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
-/*        $request->validate([                    //validacion del request
-            'name'  => 'required',
-            'slug'  => "required|unique:posts,slug,$post->id"    //unico, sin tener en cta el actual slug. Con comillas
-        ]);
+       /* Hace las validaciones de tipo request, en app\Http\Request\PostReques.php */
 
-       $post->update( $request->all());   //insercion masiva en la BD,
-                                                    //todo lo util de request y que es fillable.
+       $post->update( $request->all());   //actualizo en la BD,
+
+        //al seleccionar un archivo desde un formulario, este se copia a la carpeta xampp\tmp
+        //este metodo copia el archivo seleccionado (que esta en xampp\tmp) a la carpeta storage\posts
+       if($request->file('file')){
+ 
+            $url = Storage::put('posts', $request->file('file'));
+
+            //si existia una imagen para el post, elimino el archivo
+            if($post->image){
+                Storage::delete($post->image->url);
+
+                /* actualizo la relacion polimorfica entre tablas 'posts' e 'images'. Los campos 'imageable_id' e 'imageable_type' toman la informacion del 'id' y modelo('App\Models\Post') de $post */
+                $post->image()->update([
+                   'url' => $url
+                ]);
+            }
+            else{
+                /* completo la relacion polimorfica entre tablas 'posts' e 'images'. Los campos 'imageable_id' e 'imageable_type' toman la informacion del 'id' y modelo('App\Models\Post') de $post */
+                $post->image()->create([
+                    'url' => $url
+                ]);
+            }
+       }
+
+
+        if($request->tags){
+            $post->tags()->attach($request->tags);     //llamo al metodo tags para guardar en la tabla post_tag que las relaciona a ambas, debido a que es una relacion muchos a muchos
+        }
 
         return redirect()->route('admin.posts.edit', $post)
                            ->with('info', 'El post se actualizó con éxito');      //mensaje de sesion
-*/
+
     }
 
     /**

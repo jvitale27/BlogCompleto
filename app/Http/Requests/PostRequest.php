@@ -14,10 +14,12 @@ class PostRequest extends FormRequest
     public function authorize()
     {
 //        return false;
-        if($this->user_id == auth()->user()->id)
+/*        if($this->user_id == auth()->user()->id)
             return true;                            //si el usuario que devuelve el formulario es el identificado
         else
-            return false;
+            return false;*/
+
+        return true;
     }
 
     /**

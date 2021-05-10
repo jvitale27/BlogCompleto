@@ -1,8 +1,5 @@
 {{-- Formulario comun de Edit/Create posts --}}
 
-{{-- pongo id de usuario identificado en un campo oculto --}}
-{!! Form::hidden('user_id', auth()->user()->id) !!}
-
 {{-- Nombre --}}
 <div class="form-group">
 	{!! Form::label('name', 'Nombre') !!}
