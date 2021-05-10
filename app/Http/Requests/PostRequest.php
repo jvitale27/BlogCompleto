@@ -13,12 +13,16 @@ class PostRequest extends FormRequest
      */
     public function authorize()
     {
-//        return false;
-/*        if($this->user_id == auth()->user()->id)
-            return true;                            //si el usuario que devuelve el formulario es el identificado
+/*       
+        Lo siguiente debe acompaniarse con el agregado de {!! Form::hidden('user_id', auth()->user()->id) !!}
+        en el formulario de Create y Edit, o en la plantilla form comun a mabos.
+        Aunque solo es necesario en la plantilla Create lo debo agregar en las dos porque este PostRequest es para ambos
+        Si lo resuelvo con un Observer puedo eliminar este chequeo de aqui
+        if($this->user_id == auth()->user()->id)    //si el usuario que devuelve el formulario es el identificado
+            return true;                            
         else
-            return false;*/
-
+            return false;
+*/
         return true;
     }
 

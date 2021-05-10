@@ -74,7 +74,7 @@ class PostController extends Controller
 
 
         if($request->tags){
-            $post->tags()->attach($request->tags);     //llamo al metodo tags para guardar en la tabla post_tag que las relaciona a ambas, debido a que es una relacion muchos a muchos
+            $post->tags()->attach($request->tags);     //llamo al metodo tags->attach para crear en la tabla post_tag que las relaciona a ambas, debido a que es una relacion muchos a muchos
         }
 
         return redirect()->route('admin.posts.edit', $post)
@@ -152,7 +152,7 @@ class PostController extends Controller
 
 
         if($request->tags){
-            $post->tags()->attach($request->tags);     //llamo al metodo tags para guardar en la tabla post_tag que las relaciona a ambas, debido a que es una relacion muchos a muchos
+            $post->tags()->sync($request->tags);     //llamo al metodo tags->sync para actualizar en la tabla post_tag que las relaciona a ambas, debido a que es una relacion muchos a muchos
         }
 
         return redirect()->route('admin.posts.edit', $post)
@@ -168,7 +168,12 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-//        $post->delete();
+        //aca deberia eliminar el archivo de imagen del post si existe. Esto lo puedo hacer como
+        //if($post->image){
+        //    Storage::delete($post->image->url); 
+        //pero esta vez lo hago mediante el un Observer en App\Observers\PostObserver.php       
+
+        $post->delete();
 
         return redirect()->route('admin.posts.index')
                            ->with('info', 'El post se eliminó con éxito');      //mensaje de sesion
