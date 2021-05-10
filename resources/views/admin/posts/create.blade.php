@@ -21,10 +21,7 @@
             {{-- Abro un formulario con 'open' con campos vacios. files' habilita el envio de archivos como objetos --}}
     		{!! Form::open(['route' => 'admin.posts.store', 'autocomplete' => 'off', 'files' => true]) !!}	{{-- formulario de collective --}}
 
-                {{-- incluyo la plantilla en comun
-                    @include('admin.posts.partials.form', ['category_id' => null]
-                    o tambien asi --}}
-    			{{ $category_id = null }}
+                {{-- incluyo la plantilla en comun --}}
                 @include('admin.posts.partials.form')
 
     			{!! Form::submit('Crear Post', ['class' => 'btn btn-primary']) !!}

@@ -22,10 +22,7 @@
             {{-- Abro un formulario con 'open' con campos vacios --}}
     		{!! Form::open(['route' => 'admin.tags.store']) !!}	{{-- formulario de collective --}}
 
-                {{-- incluyo la plantilla en comun
-                    @include('admin.tags.partials.form', ['color' => null]
-                    o tambien asi --}}
-                {{ $color =  null}}
+                {{-- incluyo la plantilla en comun --}}
                 @include('admin.tags.partials.form')
 
     			{!! Form::submit('Crear Etiqueta', ['class' => 'btn btn-primary']) !!}

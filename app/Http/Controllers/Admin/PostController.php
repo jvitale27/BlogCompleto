@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
-use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\PostRequest;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -53,19 +53,28 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
 //    public function store(Request $request)
-    public function store(StorePostRequest $request)
+    public function store(PostRequest $request)
     {
         /* Hace las validaciones de tipo request, en app\Http\Request\StorePostReques.php */
-
-        //al seleccionar un archivo desde un formulario, este se copia a la carpeta xampp\tmp
-        //este metodo copia el archivo seleccionado (que esta en xampp\tmp) a la carpeta storage\posts
-        Storage::put('posts', $request->file('file'));
 
        $post = Post::create( $request->all());   //insercion masiva en la BD,
                                                     //todo lo util de request y que es fillable.
 
+        //al seleccionar un archivo desde un formulario, este se copia a la carpeta xampp\tmp
+        //este metodo copia el archivo seleccionado (que esta en xampp\tmp) a la carpeta storage\posts
+       if($request->file('file')){
+ 
+            $url = Storage::put('posts', $request->file('file'));
+
+            /* completo la relacion polimorfica entre tablas 'posts' e 'images'. Los campos 'imageable_id' e 'imageable_type' toman la informacion del 'id' y modelo('App\Models\Post') de $post */
+            $post->image()->create([
+                'url' => $url
+            ]);
+       }
+
+
         if($request->tags){
-            $post->tags()->attach($request->tags);     //llamo al metodo tags para guardar en la tabla post_tag que las relaciona a ambas
+            $post->tags()->attach($request->tags);     //llamo al metodo tags para guardar en la tabla post_tag que las relaciona a ambas, debido a que es una relacion muchos a muchos
         }
 
         return redirect()->route('admin.posts.edit', $post)
@@ -92,9 +101,6 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-
-//VOY POR ACA
-
 //        $categories = Category::all();
     /* Para que lo entienda el formulario de Collective, debo crear un array del tipo 
         {['id'=>'name',
@@ -105,7 +111,7 @@ class PostController extends Controller
     
         $tags = Tag::all();
 
-        return view('admin.posts.create', compact('post', 'categories', 'tags'));
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -115,7 +121,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
 /*        $request->validate([                    //validacion del request
             'name'  => 'required',

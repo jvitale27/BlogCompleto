@@ -31,7 +31,7 @@
 --}}
 {{-- mediante collective --}}
     {!! Form::label('color', 'Color') !!}
-    {!! Form::select('color', $colors, $color, ['class' => 'form-control']) !!}
+    {!! Form::select('color', $colors, null, ['class' => 'form-control']) !!}
 
     @error('color')
         <span class="text-danger">{{ $message }}</span>

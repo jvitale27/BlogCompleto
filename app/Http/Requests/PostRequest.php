@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePostRequest extends FormRequest
+class PostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,11 +28,18 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
     
+        $post = $this->route()->parameter('post');  //recupero la variable post desde el formulario
+
        $rules = [                                  //validacion del request
             'name'   => 'required',
             'slug'   => 'required|unique:posts',
-            'status' => 'required|in:1,2'
+            'status' => 'required|in:1,2',
+            'file'   => 'image'                 //en caso de existir, debe ser de tipo 'image'
         ];
+
+        //si vengo desde el formulario editar, el posts ya tiene slug y puedo repetirlo. No lo valido
+        if($post)
+            $rules['slug'] = 'required|unique:posts,slug,' . $post->id;
 
         if($this->status == 2){
             $rules = array_merge($rules, [
