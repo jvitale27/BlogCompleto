@@ -28,7 +28,7 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                {{ $slot }}     {{--aqui va todo el contenido de quien lo invoca o instancia--}}
             </main>
         </div>
 

@@ -24,7 +24,7 @@ module.exports = {
 
     plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 
-//deshabilito la clase container que viene con tailwind
+//deshabilito la clase container que viene con tailwind, porque voy a crear la propia en resources\css
     corePlugins: {
       // ...
      container: false,

@@ -26,7 +26,10 @@ class PostObserver
 //este se ejecuta antes del metodo del controlador
     public function creating(Post $post)
     {
-        $post->user_id = auth()->user()->id;    //cargo el usuario autentificado al nuevo post
+        if( ! \App::runningInConsole()){            //esto evita que se dispare este metodo cuando hago migraciones
+                                                    // y seeders desde la consola de comandos
+            $post->user_id = auth()->user()->id;    //cargo el usuario autentificado al nuevo post creado
+        }
     }
 
     /**

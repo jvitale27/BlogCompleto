@@ -1,3 +1,4 @@
+{{-- componente que arma las tarjetas de posts para una vista de una seleccionada categoria --}}
 {{-- recibo los parametros --}}
 @props(['post'])
 

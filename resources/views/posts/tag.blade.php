@@ -1,3 +1,4 @@
+{{-- instancio al componente 'app-layout' en App\View\Components\AppLayout.php que renderiza la view 'layouts.app' en view\layouts\app.blade.php --}}
 <x-app-layout>
 
 	<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

@@ -8,8 +8,11 @@
         <div class="flex items-center">
 		      <!-- logotipo -->
            <a href="/" class="flex">
-              <img class="h-8 w-8 object-cover object-center" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="">
-              <span class="ml-3 text-2xl font-bold text-white">workflow</span>
+{{--               <img class="h-8 w-8 object-cover object-center" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="">
+ --}} 
+               <img class="h-8 w-8 object-cover object-center" src="{{ Storage::url('posts/LOGO.png') }}" alt="">
+ 
+              <span class="ml-3 text-2xl font-bold text-white">Gran BLOG</span>
           </a>
            
 	     	  <!-- menu lg -->

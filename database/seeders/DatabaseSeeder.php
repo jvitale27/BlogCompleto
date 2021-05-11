@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
 
     public function run()		//cuando ejecuto "php artisan db:seed" se generan estos registros en la tabla
     {
-        //ESTAS DOS INSTRUCCIONES NO FUNCIONAN POR UN TEMA DE PERMISOS DE WINDOWS !!!!!!!!!!!!!!!
     	Storage::deleteDirectory('posts');	//borro la carpeta public/storage/posts donde almaceno imagenes
     	Storage::makeDirectory('posts');	//creo la carpeta public/storage/posts donde almaceno imagenes
 
