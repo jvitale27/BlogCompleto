@@ -10,8 +10,8 @@ use App\Models\Tag;
 class PostController extends Controller
 {
     public function index(){
-//    	$posts = Post::where('status', 2)->get();						//todos
-//    	$posts = Post::where('status', 2)->paginate(8);					//paginado de 8
+//    	$posts = Post::where('status', 2)->get();						//todos sin paginar
+//      $posts = Post::where('status', 2)->latest('updated_at')->paginate(8);   //del ultimo al primero por 'updated_at'
     	$posts = Post::where('status', 2)->latest('id')->paginate(8);	//del ultimo al primero por 'id'
 
     	return view('posts.index', compact('posts'));
@@ -25,8 +25,8 @@ class PostController extends Controller
     					->latest('id')
     					->take(4)
     					->get();					/* take() acepta el metodo get() */
-    					
-    	return view('posts.show', compact('post', 'similares'));
+
+       	return view('posts.show', compact('post', 'similares'));
 
     }
 
@@ -37,7 +37,8 @@ class PostController extends Controller
     					->latest('id')
     					->paginate(4);
 */
-		//lo mismo. paginate() no necesita el metodo get()
+		//Algo equivalente a lo anterior.    paginate() no necesita el metodo get()
+//      $posts = $category->posts()->where('status',2)->latest('updated_at')->paginate(4);
     	$posts = $category->posts()->where('status',2)->latest('id')->paginate(4);
 
 
@@ -46,6 +47,7 @@ class PostController extends Controller
 
     public function tag(Tag $tag){
 
+//      $posts = $tag->posts()->where('status',2)->latest('updated_at')->paginate(4);
     	$posts = $tag->posts()->where('status',2)->latest('id')->paginate(4);
 
     	return view('posts.tag', compact('posts', 'tag'));

@@ -1,8 +1,4 @@
 {{-- AdminLTE lleva codigo de BOOTSTRAP y de Tailwind --}}
-
-
-
-
 @extends('adminlte::page')
 
 @section('title', 'Administracion')
@@ -37,7 +33,7 @@
 @stop
 
 @section('css')
-    <style>
+    <style>                         {{-- estilos de la imagen cargada en admin.posts.partials.form--}}
         .image-wrapper{
             position: relative;
             padding-bottom: 56.25%;
@@ -51,16 +47,16 @@
     </style>
 @stop
 
-{{-- esta seccion javascript me crea el slug dinamicamente a medida que tipeo en name. --}}
 @section('js')
     {{-- plugin 'jQuery Plugin stringToSlug' desde https://leocaseiro.com.br/jquery-plugin-string-to-slug/ --}}
     <script src="{{ asset('vendor\jQuery-Plugin-stringToSlug-1.3\jquery.stringToSlug.min.js') }}"></script>
 
-{{-- plugin desde CKEditor5 desde https://ckeditor.com/ckeditor-5/download/  para ingresar texto enriquecido--}}
+    {{-- plugin desde CKEditor5 desde https://ckeditor.com/ckeditor-5/download/  para ingresar texto enriquecido--}}
     <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 
     <script>
     {{--pegado desde 'jThe values Default at Plugin Usage' https://leocaseiro.com.br/jquery-plugin-string-to-slug/--}}
+    {{-- esta seccion javascript me crea el slug dinamicamente a medida que tipeo en name. --}}
         $(document).ready( function() {
             $("#name").stringToSlug({
                 setEvents: 'keyup keydown blur',
@@ -69,13 +65,13 @@
             });
         });
 
-{{-- plugin desde CKEditor5 desde https://ckeditor.com/ckeditor-5/download/  para ingresar texto enriquecido--}}
+        {{-- plugin desde CKEditor5 desde https://ckeditor.com/ckeditor-5/download/ para ingresar texto enriquecido--}}
         ClassicEditor
         .create( document.querySelector( '#extract' ) )
         .catch( error => {
             console.error( error );
         } );
-{{-- plugin desde CKEditor5 desde https://ckeditor.com/ckeditor-5/download/  para ingresar texto enriquecido--}}
+        {{-- plugin desde CKEditor5 desde https://ckeditor.com/ckeditor-5/download/ para ingresar texto enriquecido--}}
         ClassicEditor
         .create( document.querySelector( '#body' ) )
         .catch( error => {
