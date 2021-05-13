@@ -1,6 +1,8 @@
 {{-- instancio al componente 'app-layout' en App\View\Components\AppLayout.php que renderiza la view 'layouts.app' en view\layouts\app.blade.php --}}
 <x-app-layout>
 
+	{{-- todo lo de aqui adentro pasa a formar el {{ $slot }} del componente --}}
+
 	<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 		<h1 class="text-center text-3xl mb-4 font-bold">Categoria: {{ $category->name }}</h1>
 

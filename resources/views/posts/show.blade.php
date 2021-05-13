@@ -1,6 +1,8 @@
 {{-- instancio al componente 'app-layout' en App\View\Components\AppLayout.php que renderiza la view 'layouts.app' en view\layouts\app.blade.php --}}
 <x-app-layout>
 
+	{{-- todo lo de aqui adentro pasa a formar el {{ $slot }} del componente --}}
+
 	<div class="container py-8">
 
 		<h1 class="text-4xl font-bold text-gray-600">
@@ -36,12 +38,12 @@
 					@foreach ($similares as $similar)
 						<li class="mb-4">
 							<a class="flex" href="{{ route('posts.show', $similar) }}">
-								<img class="w-28 h-20 object-cover object-center bg-gray-700"
+								<img class="flex-none w-28 h-20 object-cover object-center bg-gray-700"
 								@if ($similar->image)		{{-- si el post tiene imagen, entonces imagen de fondo --}}
 									 src="{{ Storage::url($similar->image->url) }}"
 								@endif
 								alt="">
-								<span class="ml-2 text-gray-600">{{ $similar->name }}</span>
+								<span class="flex-1 ml-2 text-gray-600">{{ $similar->name }}</span>
 							</a>
 						</li>
 					@endforeach

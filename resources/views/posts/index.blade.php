@@ -1,5 +1,8 @@
 {{-- instancio al componente 'app-layout' en App\View\Components\AppLayout.php que renderiza la view 'layouts.app' en view\layouts\app.blade.php --}}
 <x-app-layout>
+
+	{{-- todo lo de aqui adentro pasa a formar el {{ $slot }} del componente --}}
+	
 <!-- OJO que en este proyecto redefini la clase container. La anule desde tailwind.config.js y la cree en resources/css/commom.css -->
 	<div class="container py-8">
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
