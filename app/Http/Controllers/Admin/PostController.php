@@ -101,6 +101,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $this->authorize('author', $post);      //veo si tengo autorizacion para editar este 
+
 //        $categories = Category::all();
     /* Para que lo entienda el formulario de Collective, debo crear un array del tipo 
         {['id'=>'name',
@@ -123,13 +125,16 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
-       /* Hace las validaciones de tipo request, en app\Http\Request\PostReques.php */
+        /* Hace las validaciones de tipo request, en app\Http\Request\PostReques.php */
 
-       $post->update( $request->all());   //actualizo en la BD,
+        $this->authorize('author', $post);      //veo si tengo autorizacion para editar este 
+
+
+        $post->update( $request->all());   //actualizo en la BD,
 
         //al seleccionar un archivo desde un formulario, este se copia a la carpeta xampp\tmp
         //este metodo copia el archivo seleccionado (que esta en xampp\tmp) a la carpeta storage\posts
-       if($request->file('file')){
+        if($request->file('file')){
  
             $url = Storage::put('posts', $request->file('file'));
 
@@ -148,7 +153,7 @@ class PostController extends Controller
                     'url' => $url
                 ]);
             }
-       }
+        }
 
 
         if($request->tags){
@@ -168,6 +173,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('author', $post);      //veo si tengo autorizacion para editar este 
+
         //aca deberia eliminar el archivo de imagen del post si existe. Esto lo puedo hacer como
         //if($post->image){
         //    Storage::delete($post->image->url); 

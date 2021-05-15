@@ -9,7 +9,8 @@ use App\Models\Tag;
 
 class PostController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 //    	$posts = Post::where('status', 2)->get();						//todos sin paginar
 //      $posts = Post::where('status', 2)->latest('updated_at')->paginate(8);   //del ultimo al primero por 'updated_at'
     	$posts = Post::where('status', 2)->latest('id')->paginate(8);	//del ultimo al primero por 'id'
@@ -17,7 +18,9 @@ class PostController extends Controller
     	return view('posts.index', compact('posts'));
     }
 
-    public function show(Post $post){
+    public function show(Post $post)
+    {
+        $this->authorize('published', $post);      //veo si el post esta publicado o no 
 
     	$similares = Post::where('category_id', $post->category_id)
     					->where('status', 2)
@@ -30,7 +33,8 @@ class PostController extends Controller
 
     }
 
-    public function category(Category $category){
+    public function category(Category $category)
+    {
  /*   
     	$posts = Post::where('category_id', $category->id)
     					->where('status', 2)
@@ -45,8 +49,8 @@ class PostController extends Controller
     	return view('posts.category', compact('posts', 'category'));
     }
 
-    public function tag(Tag $tag){
-
+    public function tag(Tag $tag)
+    {
 //      $posts = $tag->posts()->where('status',2)->latest('updated_at')->paginate(4);
     	$posts = $tag->posts()->where('status',2)->latest('id')->paginate(4);
 
