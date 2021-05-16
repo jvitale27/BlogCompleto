@@ -20,6 +20,10 @@ class DatabaseSeeder extends Seeder
     	Storage::deleteDirectory('posts');	//borro la carpeta public/storage/posts donde almaceno imagenes
     	Storage::makeDirectory('posts');	//creo la carpeta public/storage/posts donde almaceno imagenes
 
+        //utilizacion de seeders para crear registros. Archivos database\seeders 
+        //primero va Role y luego User, sin no puedo vincularlos
+        $this->call(RoleSeeder::class);
+
     	//utilizacion de seeders para crear registros. Archivos database\seeders 
         $this->call(UserSeeder::class);
 
