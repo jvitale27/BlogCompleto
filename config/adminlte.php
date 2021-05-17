@@ -240,20 +240,21 @@ return [
 //            'text'        => 'pages',
 //            'url'         => 'admin/pages',
 //            'icon'        => 'far fa-fw fa-file',
+//            'label'       => 4,
+//            'label_color' => 'success',
             'text'  => 'Dashboard',
             'route' => 'admin.home',
             'icon'  => 'fas fa-tachometer-alt fa-fw',     //extraido de www.fontawesome.com
-//            'label'       => 4,
-//            'label_color' => 'success',
+            'can'   => 'admin.home',                //solo se les muestra a los usuarios con permiso a ese link
         ],
         [
             'text'   => 'Usuarios',
             'route'  => 'admin.users.index',
             'icon'   => 'fas fa-users fa-fw',     //extraido de www.fontawesome.com
             'active' => ['admin/users*'],           //mantener el link pintado(activo) en esas urls
+            'can'    => 'admin.users.index',        //solo se les muestra a los usuarios con permiso a ese link
         ],
 //        ['header' => 'account_settings'],
-        ['header' => 'ADMINISTRADOR'],
         [
 //            'text' => 'profile',
 //            'url'  => 'admin/settings',
@@ -262,6 +263,7 @@ return [
             'route'  => 'admin.categories.index',
             'icon'   => 'fab fa-fw fa-buffer',        //extraido de www.fontawesome.com
             'active' => ['admin/categories*'],           //mantener el link pintado(activo) en esas urls
+            'can'    => 'admin.categories.index',  //solo se les muestra a los usuarios con permiso a ese link
         ],
         [
 //            'text' => 'change_password',
@@ -271,6 +273,7 @@ return [
             'route'  => 'admin.tags.index',
             'icon'   => 'far fa-fw fa-bookmark',      //extraido de www.fontawesome.com
             'active' => ['admin/tags*'],           //mantener el link pintado(activo) en esas urls
+            'can'    => 'admin.tags.index',  //solo se les muestra a los usuarios con permiso a ese link
         ],
         [                                           /* este de abajo solo lo dejo a modo de ejemplo */
             'text'    => 'multilevel',
@@ -312,18 +315,20 @@ return [
         ],
         ['header' => 'OPCIONES DE BLOG'],
         [
+//            'icon_color' => 'red',
+//            'url'        => '#',
             'text'  => 'Lista de posts',
             'route' => 'admin.posts.index',
             'icon'  => 'fas fa-fw fa-clipboard',     //extraido de www.fontawesome.com
-//            'icon_color' => 'red',
-//            'url'        => '#',
+            'can'   => 'admin.posts.index',  //solo se les muestra a los usuarios con permiso a ese link
         ],
         [
+//            'icon_color' => 'yellow',
+//            'url'        => '#',
             'text'  => 'Crear nuevo post',
             'route' => 'admin.posts.create',
             'icon'  => 'fas fa-fw fa-file',          //extraido de www.fontawesome.com
-//            'icon_color' => 'yellow',
-//            'url'        => '#',
+            'can'   => 'admin.posts.create',  //solo se les muestra a los usuarios con permiso a ese link
         ],
     ],
 

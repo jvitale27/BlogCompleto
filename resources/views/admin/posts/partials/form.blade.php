@@ -75,7 +75,7 @@
 			@isset ($post->image) 			{{-- utilizo isset y no if porque en create post no esta definida --}}
 				<img id="picture" src="{{ Storage::url($post->image->url) }}">
 			@else
-				<img id="picture" src="https://cdn.pixabay.com/photo/2021/05/03/10/12/buttercup-6225833_960_720.jpg">		{{-- el id="picture" se utiliza en la seccion 'js' de create.blade.php o edit.blade.php --}}
+				<img id="picture" src="{{ Storage::url('imagen_por_defecto.png') }}">		{{-- el id="picture" se utiliza en la seccion 'js' de create.blade.php o edit.blade.php --}}
 			@endif
 		</div>
 	</div>

@@ -9,13 +9,17 @@ use Illuminate\Support\Facades\Route;
 
 //todas estas rutas tienen el prefijo 'admin'
 
-Route::get('', [HomeController::class, 'index'])->name('admin.home');
+//el middleware('can:admin.home') verifica el acceso en caso de que tipeen la url directamente
+Route::get('', [HomeController::class, 'index'])->middleware('can:admin.home')->name('admin.home');
 
-//solo habilito 3 metodos de los 7 del CRUD
+//solo habilito 3 metodos de los 7 del CRUD. Los permisos con middleware los discrimino en el controlador
 Route::resource('users', UserController::class)->only('index', 'edit', 'update')->names('admin.users');	
 
-Route::resource('categories', CategoryController::class)->names('admin.categories');	
+//Los 7 metodos del CRUD menos el metodo 'show'. Los permisos con middleware los discrimino en el controlador
+Route::resource('categories', CategoryController::class)->except('show')->names('admin.categories');	
 
-Route::resource('tags', TagController::class)->names('admin.tags');	
+//Los 7 metodos del CRUD menos el metodo 'show'. Los permisos con middleware los discrimino en el controlador
+Route::resource('tags', TagController::class)->except('show')->names('admin.tags');	
 
-Route::resource('posts', PostController::class)->names('admin.posts');	
+//Los 7 metodos del CRUD menos el metodo 'show'. Los permisos con middleware los discrimino en el controlador
+Route::resource('posts', PostController::class)->except('show')->names('admin.posts');	

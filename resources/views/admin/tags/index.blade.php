@@ -6,8 +6,9 @@
 
 @section('content_header')
 
-    <a href="{{ route('admin.tags.create') }}" class="btn btn-secondary float-right">Agregar etiqueta</a>
-
+    @can('admin.tags.create')           {{-- si tengo el acceso requerido --}}
+        <a href="{{ route('admin.tags.create') }}" class="btn btn-secondary btn-sm float-right">Agregar etiqueta</a>
+    @endcan
     <h1>Lista de etiquetas</h1>
 @stop
 
@@ -40,15 +41,19 @@
     						<td>{{ $tag->name }}</td>
 
     						<td width="10px">
-    							<a href="{{ route('admin.tags.edit', $tag) }}" class="btn btn-primary btn-sm">Editar</a>
+                                @can('admin.tags.edit')           {{-- si tengo el acceso requerido --}}
+    						      	<a href="{{ route('admin.tags.edit', $tag) }}" class="btn btn-primary btn-sm">Editar</a>
+                                @endcan
     						</td>
 
     						<td width="10px">
-    							<form action="{{ route('admin.tags.destroy', $tag) }}" method="POST">
-    								@csrf
-    								@method('DELETE')
-    								<button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-    							</form>
+                                @can('admin.tags.destroy')           {{-- si tengo el acceso requerido --}}
+        							<form action="{{ route('admin.tags.destroy', $tag) }}" method="POST">
+        								@csrf
+        								@method('DELETE')
+        								<button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+        							</form>
+                                @endcan
     						</td>
 
     					</tr>

@@ -10,7 +10,7 @@
            <a href="/" class="flex">
 {{--               <img class="h-8 w-8 object-cover object-center" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="">
  --}} 
-               <img class="h-8 w-8 object-cover object-center" src="{{ Storage::url('posts/LOGO.png') }}" alt="">
+               <img class="h-8 w-8 object-cover object-center" src="{{ Storage::url('logo.png') }}" alt="">
  
               <span class="ml-3 text-2xl font-bold text-white">Gran BLOG</span>
           </a>
@@ -64,8 +64,10 @@
                   <!-- Active: "bg-gray-100", Not Active: "" -->
                   <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Tu perfil</a>
 
-                  <a href="{{ route('admin.home') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Administracion</a>
-
+                  @can('admin.home')    {{-- verifico si tiene acceso a la administracion --}}
+                    <a href="{{ route('admin.home') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Administracion</a>
+                  @endcan
+                  
                   <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2"

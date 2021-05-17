@@ -14,11 +14,17 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    //defino los permisos para ingresar por si tipean las urls directamente en el navegador
+    public function __construct()
+    {
+        $this->middleware('can:admin.posts.index')->only('index');
+        $this->middleware('can:admin.posts.create')->only('create', 'store');
+        $this->middleware('can:admin.posts.edit')->only('edit', 'update');
+        $this->middleware('can:admin.posts.destroy')->only('destroy');
+    }
+
+
     public function index()
     {
         $posts = Post::all();
@@ -26,11 +32,7 @@ class PostController extends Controller
         return view('admin.posts.index', compact('posts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
 //        $categories = Category::all();
@@ -46,12 +48,7 @@ class PostController extends Controller
         return view('admin.posts.create', compact('categories', 'tags'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
 //    public function store(Request $request)
     public function store(PostRequest $request)
     {
@@ -82,26 +79,10 @@ class PostController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Post $post)
-    {
-        return view('admin.posts.show', compact('post'));
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Post $post)
     {
-        $this->authorize('author', $post);      //veo si tengo autorizacion para editar este 
+        $this->authorize('author', $post);      //verifico autorizacion sobre este post, si es mio
 
 //        $categories = Category::all();
     /* Para que lo entienda el formulario de Collective, debo crear un array del tipo 
@@ -116,18 +97,12 @@ class PostController extends Controller
         return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(PostRequest $request, Post $post)
     {
         /* Hace las validaciones de tipo request, en app\Http\Request\PostReques.php */
 
-        $this->authorize('author', $post);      //veo si tengo autorizacion para editar este 
+        $this->authorize('author', $post);      //verifico autorizacion sobre este post, si es mio 
 
 
         $post->update( $request->all());   //actualizo en la BD,
@@ -165,15 +140,10 @@ class PostController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Post $post)
     {
-        $this->authorize('author', $post);      //veo si tengo autorizacion para editar este 
+        $this->authorize('author', $post);      //verifico autorizacion sobre este post, si es mio 
 
         //aca deberia eliminar el archivo de imagen del post si existe. Esto lo puedo hacer como
         //if($post->image){
