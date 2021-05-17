@@ -3,10 +3,10 @@
     <div class="card">
 
     	<div class="card-header">
-    		<input wire:model="search" class="form-control" placeholder="ingrese el nombre de un post">
+    		<input wire:model="search" class="form-control" placeholder="ingrese el nombre o correo de un usuario">
     	</div>
 
-    	@if ($posts->count())
+    	@if ($users->count())
 
 	    	<div class="card-body">
 	    		<table class="table table-striped">
@@ -14,37 +14,29 @@
 	    				<tr>
 	    					<th>ID</th>
 	    					<th>Nombre</th>
-	    					<th colspan="2"></th>
+	    					<th>Correo</th>
+	    					<th colspan="1"></th>
 	    				</tr>
 	    			</thead>
 
 	    			<tbody>
-	    				@foreach ($posts as $post)
+	    				@foreach ($users as $user)
 	    					<tr>
-	    						<td>{!! $post->id !!}</td>
-	    						<td>{!! $post->name !!}</td>
+	    						<td>{!! $user->id !!}</td>
+	    						<td>{!! $user->name !!}</td>
+	    						<td>{!! $user->email !!}</td>
 
 	    						<td width="10px">
-	    							<a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-primary btn-sm">Editar</a>
+	    							<a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary btn-sm">Editar</a>
 	    						</td>
-
-	    						<td width="10px">
-	    							<form action="{{ route('admin.posts.destroy', $post) }}" method="POST">
-	    								@csrf
-	    								@method('DELETE')
-	    								<button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-	    							</form>
-	    						</td>
-
 	    					</tr>
 	    				@endforeach
-	    				
 	    			</tbody>
 	    		</table>
 	    	</div>
 
 	    	<div class="card-footer">
-	    		{{ $posts->links() }}
+	    		{{ $users->links() }}
 	    	</div>
 
 	    @else

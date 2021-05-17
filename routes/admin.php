@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('', [HomeController::class, 'index'])->name('admin.home');
 
-Route::get('users', UserController::class)->name('admin.users');
+//solo habilito 3 metodos de los 7 del CRUD
+Route::resource('users', UserController::class)->only('index', 'edit', 'update')->names('admin.users');	
 
 Route::resource('categories', CategoryController::class)->names('admin.categories');	
 

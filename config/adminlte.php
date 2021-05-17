@@ -240,13 +240,18 @@ return [
 //            'text'        => 'pages',
 //            'url'         => 'admin/pages',
 //            'icon'        => 'far fa-fw fa-file',
-            'text' => 'Dashboard',
-            'url'  => 'admin',
-            'icon' => 'fas fa-tachometer-alt fa-fw',     //extraido de www.fontawesome.com
+            'text'  => 'Dashboard',
+            'route' => 'admin.home',
+            'icon'  => 'fas fa-tachometer-alt fa-fw',     //extraido de www.fontawesome.com
 //            'label'       => 4,
 //            'label_color' => 'success',
         ],
-
+        [
+            'text'   => 'Usuarios',
+            'route'  => 'admin.users.index',
+            'icon'   => 'fas fa-users fa-fw',     //extraido de www.fontawesome.com
+            'active' => ['admin/users*'],           //mantener el link pintado(activo) en esas urls
+        ],
 //        ['header' => 'account_settings'],
         ['header' => 'ADMINISTRADOR'],
         [
