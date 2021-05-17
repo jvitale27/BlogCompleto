@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,8 @@ Route::get('', [HomeController::class, 'index'])->middleware('can:admin.home')->
 
 //solo habilito 3 metodos de los 7 del CRUD. Los permisos con middleware los discrimino en el controlador
 Route::resource('users', UserController::class)->only('index', 'edit', 'update')->names('admin.users');	
+
+Route::resource('roles', RoleController::class)->names('admin.roles');	
 
 //Los 7 metodos del CRUD menos el metodo 'show'. Los permisos con middleware los discrimino en el controlador
 Route::resource('categories', CategoryController::class)->except('show')->names('admin.categories');	

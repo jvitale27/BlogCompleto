@@ -25,7 +25,7 @@
                 {{-- incluyo la plantilla en comun --}}
                 @include('admin.categories.partials.form')
 
-    			{!! Form::submit('Crear Categoria', ['class' => 'btn btn-primary']) !!}
+    			{!! Form::submit('Crear Categoria', ['class' => 'btn btn-primary mt-2']) !!}
 
     		{!! Form::close() !!}
     	</div>

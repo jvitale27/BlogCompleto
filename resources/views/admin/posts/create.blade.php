@@ -26,7 +26,7 @@
 				{{-- incluyo la plantilla en comun --}}
                 @include('admin.posts.partials.form')
 
-    			{!! Form::submit('Crear Post', ['class' => 'btn btn-primary']) !!}
+    			{!! Form::submit('Crear Post', ['class' => 'btn btn-primary mt-2']) !!}
 
     		{!! Form::close() !!}
     	</div>

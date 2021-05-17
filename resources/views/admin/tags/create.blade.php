@@ -25,7 +25,7 @@
                 {{-- incluyo la plantilla en comun --}}
                 @include('admin.tags.partials.form')
 
-    			{!! Form::submit('Crear Etiqueta', ['class' => 'btn btn-primary']) !!}
+    			{!! Form::submit('Crear Etiqueta', ['class' => 'btn btn-primary mt-2']) !!}
 
     		{!! Form::close() !!}
     	</div>

@@ -254,6 +254,13 @@ return [
             'active' => ['admin/users*'],           //mantener el link pintado(activo) en esas urls
             'can'    => 'admin.users.index',        //solo se les muestra a los usuarios con permiso a ese link
         ],
+        [
+            'text'   => 'ListadeRoles',
+            'route'  => 'admin.roles.index',
+            'icon'   => 'fas fa-users-cog fa-fw',     //extraido de www.fontawesome.com
+            'active' => ['admin/roles*'],           //mantener el link pintado(activo) en esas urls
+            // 'can'    => 'admin.roles.index',        //solo se les muestra a los usuarios con permiso a ese link
+        ],
 //        ['header' => 'account_settings'],
         [
 //            'text' => 'profile',
