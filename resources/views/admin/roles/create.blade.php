@@ -3,7 +3,7 @@
 @section('title', 'Administracion')
 
 @section('content_header')
-    <h1>Crear rol</h1>
+    <h1>Crear nuevo rol</h1>
 @stop
 
 @section('content')
@@ -23,7 +23,7 @@
                 {{-- incluyo la plantilla en comun --}}
                 @include('admin.roles.partials.form')
 
-    			{!! Form::submit('Crear Rol', ['class' => 'btn btn-primary mt-2']) !!}
+    			{!! Form::submit('Guardar', ['class' => 'btn btn-primary mt-2']) !!}
 
     		{!! Form::close() !!}
     	</div>

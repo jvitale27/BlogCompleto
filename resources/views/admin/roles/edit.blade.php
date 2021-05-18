@@ -23,7 +23,7 @@
                 {{-- incluyo la plantilla en comun --}}
                 @include('admin.roles.partials.form')
 
-    			{!! Form::submit('Actualizar Rol', ['class' => 'btn btn-primary mt-2']) !!}
+    			{!! Form::submit('Guardar', ['class' => 'btn btn-primary mt-2']) !!}
 
     		{!! Form::close() !!}
     	</div>

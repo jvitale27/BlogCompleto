@@ -5,7 +5,7 @@
 @section('title', 'Administracion')
 
 @section('content_header')
-    <h1>Asignar un rol</h1>
+    <h1>Asignar roles a un usuario</h1>
 @stop
 
 @section('content')
@@ -34,7 +34,7 @@
                     </div>
                 @endforeach
 
-                {!! Form::submit('Asignar roles', ['class' => 'btn btn-primary mt-2']) !!}
+                {!! Form::submit('Guardar', ['class' => 'btn btn-primary mt-2']) !!}
 
             {!! Form::close() !!}
 

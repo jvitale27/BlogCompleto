@@ -5,8 +5,9 @@
 @section('title', 'Administracion')
 
 @section('content_header')
-    <a href="{{ route('admin.posts.create') }}" class="btn btn-secondary btn-sm float-right">Nuevo post</a>
-
+    @can('admin.posts.create')           {{-- si tengo el acceso requerido --}}
+        <a href="{{ route('admin.posts.create') }}" class="btn btn-secondary btn-sm float-right">Nuevo post</a>
+    @endcan
     <h1>Lista de posts de {{ auth()->user()->name }}</h1>
 @stop
 

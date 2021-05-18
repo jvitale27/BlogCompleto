@@ -25,15 +25,19 @@
 	    						<td>{!! $post->name !!}</td>
 
 	    						<td width="10px">
-	    							<a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-primary btn-sm">Editar</a>
+	    							@can('admin.posts.edit')           {{-- si tengo el acceso requerido --}}
+	    								<a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-primary btn-sm">Editar</a>
+	    							@endcan
 	    						</td>
 
 	    						<td width="10px">
-	    							<form action="{{ route('admin.posts.destroy', $post) }}" method="POST">
-	    								@csrf
-	    								@method('DELETE')
-	    								<button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-	    							</form>
+	    							@can('admin.posts.destroy')           {{-- si tengo el acceso requerido --}}
+		    							<form action="{{ route('admin.posts.destroy', $post) }}" method="POST">
+		    								@csrf
+		    								@method('DELETE')
+		    								<button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+		    							</form>
+	    							@endcan
 	    						</td>
 
 	    					</tr>

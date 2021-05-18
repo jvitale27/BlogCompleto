@@ -25,7 +25,7 @@
                 {{-- incluyo la plantilla en comun --}}
                 @include('admin.categories.partials.form')
 
-    			{!! Form::submit('Actualizar Categoria', ['class' => 'btn btn-primary mt-2']) !!}
+    			{!! Form::submit('Guardar', ['class' => 'btn btn-primary mt-2']) !!}
 
     		{!! Form::close() !!}
     	</div>

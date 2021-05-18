@@ -15,7 +15,7 @@
 	    					<th>ID</th>
 	    					<th>Nombre</th>
 	    					<th>Correo</th>
-	    					<th colspan="1"></th>
+	    					<th colspan="2"></th>
 	    				</tr>
 	    			</thead>
 
@@ -26,8 +26,10 @@
 	    						<td>{!! $user->name !!}</td>
 	    						<td>{!! $user->email !!}</td>
 
-	    						<td width="10px">
-	    							<a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary btn-sm">Editar</a>
+	    						<td width="120px">
+	    							@can('admin.users.edit')           {{-- si tengo el acceso requerido --}}
+	    								<a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary btn-sm">Asignar roles</a>
+	    							@endcan
 	    						</td>
 	    					</tr>
 	    				@endforeach

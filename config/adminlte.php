@@ -46,7 +46,8 @@ return [
     */
 
     'logo' => '<b>AdminLTE</b>JULA',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+//    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'storage/logo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -187,15 +188,17 @@ return [
     |
     */
 
-    'use_route_url' => false,
-//    'dashboard_url' => 'home',
-    'dashboard_url' => '/',                 //para que retorne a home '/'
+//    'use_route_url' => false,
+    'use_route_url' => true,
+//    'dashboard_url' => 'home',                    //se puede poner '/' para que vaya a home
+    'dashboard_url' => 'posts.index',                 //para que retorne a home '/'
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
-    'profile_url' => false,
+//    'profile_url' => false,
+    'profile_url' => 'profile.show',
 
     /*
     |--------------------------------------------------------------------------
@@ -259,7 +262,7 @@ return [
             'route'  => 'admin.roles.index',
             'icon'   => 'fas fa-users-cog fa-fw',     //extraido de www.fontawesome.com
             'active' => ['admin/roles*'],           //mantener el link pintado(activo) en esas urls
-            // 'can'    => 'admin.roles.index',        //solo se les muestra a los usuarios con permiso a ese link
+            'can'    => 'admin.roles.index',        //solo se les muestra a los usuarios con permiso a ese link
         ],
 //        ['header' => 'account_settings'],
         [
