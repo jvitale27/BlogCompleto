@@ -49,7 +49,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
 
             /* agrego un nuevo archivo de rutas */
-            Route::middleware('web', 'auth')
+            Route::middleware('web', 'auth')            //'auth' es para que accedan solo los identificados
                 ->prefix('admin')                       //todas las urls comienzan con admin/
                 ->namespace($this->namespace)
                 ->group(base_path('routes/admin.php'));
