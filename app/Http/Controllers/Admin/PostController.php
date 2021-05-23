@@ -58,10 +58,14 @@ class PostController extends Controller
                                                     //todo lo util de request y que es fillable.
 
         //al seleccionar un archivo desde un formulario, este se copia a la carpeta xampp\tmp
-        //este metodo copia el archivo seleccionado (que esta en xampp\tmp) a la carpeta storage\posts
+        //este metodo copia el archivo seleccionado (que esta en xampp\tmp) a la carpeta public\storage\posts
        if($request->file('file')){
- 
-            $url = Storage::put('posts', $request->file('file'));
+            //$url = $request->file('file')->store('posts');     //me devuelve posts/{nombre imagen}
+            //esto de abajo es lo mismo que el anterior 
+            $url = Storage::put('posts', $request->file('file'));   //me devuelve posts/{nombre imagen}
+
+            //esto luego me devuelve la url completa, http://blogcompleto.test/storage/posts/{nombre imagen}
+            //$url = Storage::url($url); 
 
             /* completo la relacion polimorfica entre tablas 'posts' e 'images'. Los campos 'imageable_id' e 'imageable_type' toman la informacion del 'id' y modelo('App\Models\Post') de $post */
             $post->image()->create([
