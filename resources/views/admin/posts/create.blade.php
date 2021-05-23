@@ -1,4 +1,4 @@
-{{-- AdminLTE lleva codigo de BOOTSTRAP y de Tailwind --}}
+{{-- plantilla AdminLTE se escribe con etiquetas, clases y codigo de BOOTSTRAP --}}
 @extends('adminlte::page')
 
 @section('title', 'Administracion')
