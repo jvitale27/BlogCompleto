@@ -11,6 +11,7 @@ class UserController extends Controller
 {
 
     //defino los permisos para ingresar por si tipean las urls directamente en el navegador
+    //se basa en las tablas roles y permissions
     public function __construct()
     {
         $this->middleware('can:admin.users.index')->only('index');

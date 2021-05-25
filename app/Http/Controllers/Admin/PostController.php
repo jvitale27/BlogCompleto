@@ -16,6 +16,7 @@ class PostController extends Controller
 {
 
     //defino los permisos para ingresar por si tipean las urls directamente en el navegador
+    //se basa en las tablas roles y permissions
     public function __construct()
     {
         $this->middleware('can:admin.posts.index')->only('index');
@@ -57,8 +58,9 @@ class PostController extends Controller
        $post = Post::create( $request->all());   //insercion masiva en la BD,
                                                     //todo lo util de request y que es fillable.
 
-        //al seleccionar un archivo desde un formulario, este se copia a la carpeta xampp\tmp
-        //este metodo copia el archivo seleccionado (que esta en xampp\tmp) a la carpeta public\storage\posts
+       //al seleccionar un archivo desde un formulario, este se copia a la carpeta xampp\tmp
+       //este metodo copia el archivo seleccionado (que esta en xampp\tmp) a la carpeta public\storage\posts
+       //renombrando el nombre del archivo, dandole un nombre aleatorio
        if($request->file('file')){
             //$url = $request->file('file')->store('posts');     //me devuelve posts/{nombre imagen}
             //esto de abajo es lo mismo que el anterior 
@@ -86,7 +88,8 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        $this->authorize('author', $post);      //verifico autorizacion sobre este post, si es mio
+        //verifico mediante la Policy PostPolicy 'autor' la autorizacion sobre este post, si es mio
+        $this->authorize('author', $post);
 
 //        $categories = Category::all();
     /* Para que lo entienda el formulario de Collective, debo crear un array del tipo 
@@ -106,8 +109,8 @@ class PostController extends Controller
     {
         /* Hace las validaciones de tipo request, en app\Http\Request\PostReques.php */
 
-        $this->authorize('author', $post);      //verifico autorizacion sobre este post, si es mio 
-
+        //verifico mediante la Policy PostPolicy 'autor' la autorizacion sobre este post, si es mio
+        $this->authorize('author', $post);
 
         $post->update( $request->all());   //actualizo en la BD,
 
@@ -147,7 +150,8 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        $this->authorize('author', $post);      //verifico autorizacion sobre este post, si es mio 
+        //verifico mediante la Policy PostPolicy 'autor' la autorizacion sobre este post, si es mio
+        $this->authorize('author', $post);
 
         //aca deberia eliminar el archivo de imagen del post si existe. Esto lo puedo hacer como
         //if($post->image){

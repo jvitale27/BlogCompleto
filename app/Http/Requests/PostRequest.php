@@ -11,13 +11,11 @@ class PostRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize()             //se ejecuta siempre que se utilize la clase FormRequest
     {
 /*       
-        Lo siguiente debe acompaniarse con el agregado de {!! Form::hidden('user_id', auth()->user()->id) !!}
-        en el formulario de Create y Edit, o en la plantilla form comun a mabos.
-        Aunque solo es necesario en la plantilla Create lo debo agregar en las dos porque este PostRequest es para ambos
-        Si lo resuelvo con un Observer puedo eliminar este chequeo de aqui
+        Para el chequeo de usuario necesito que el user_id venga en el formulario, por lo tanto debo agregar la linea {!! Form::hidden('user_id', auth()->user()->id) !!} en el formulario de Create y Edit, o en la plantilla form comun a mabos. Aunque solo es necesario en la plantilla Create lo debo agregar en las dos porque este PostRequest es para ambos
+        Como los chequeos estos los hago con Policy (PostPolicy) puedo eliminar este chequeo de aqui
         if($this->user_id == auth()->user()->id)    //si el usuario que devuelve el formulario es el identificado
             return true;                            
         else
@@ -31,7 +29,7 @@ class PostRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules()                       //se ejecuta siempre que se utilize la clase FormRequest
     {
     
         $post = $this->route()->parameter('post');  //recupero la variable post desde el formulario
