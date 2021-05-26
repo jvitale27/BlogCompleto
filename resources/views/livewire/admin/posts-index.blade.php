@@ -32,7 +32,8 @@
 
 	    						<td width="10px">
 	    							@can('admin.posts.destroy')           {{-- si tengo el acceso requerido --}}
-		    							<form action="{{ route('admin.posts.destroy', $post) }}" method="POST">
+	    								{{-- doy nombre al formulario para captar el evento desde el script --}}
+		    							<form action="{{ route('admin.posts.destroy', $post) }}" class="formulario-eliminar" method="POST">
 		    								@csrf
 		    								@method('DELETE')
 		    								<button type="submit" class="btn btn-danger btn-sm">Eliminar</button>

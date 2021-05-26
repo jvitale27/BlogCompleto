@@ -46,7 +46,8 @@
 
     						<td width="10px">
                                 @can('admin.roles.destroy')         {{-- si tengo el acceso requerido --}}
-        							<form action="{{ route('admin.roles.destroy', $role) }}" method="POST">
+                                    {{-- doy nombre al formulario para captar el evento desde el script --}}
+        							<form action="{{ route('admin.roles.destroy', $role) }}" class="formulario-eliminar" method="POST">
         								@csrf
         								@method('DELETE')
         								<button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
@@ -68,5 +69,47 @@
 @stop
 
 @section('js')
-   {{--  <script> console.log('Hi!'); </script> --}}
+
+        {{-- include para incluir cualquier cuadro de dialog desde https://sweetalert2.github.io/ --}}
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        {{-- capto el mansaje de session y aviso que ya se elimino con exito --}}
+        @if (session('info'))
+            <script>
+                Swal.fire(
+                   'Eliminado!',
+                   'Elemento eliminado',
+                   'success'                    {{-- icono --}}
+                )
+            </script>
+        @endif
+
+        <script>
+            {{-- capturo el evento de envio del formulario 'formulario-eliminar' --}}
+            $('.formulario-eliminar').submit( function( event ) {  {{-- el evento esta en la vble event --}}
+
+                event.preventDefault();     {{-- detengo el envio del formulario --}}
+
+                {{-- cartel de alerta extraido de https://sweetalert2.github.io/ --}}
+                Swal.fire({
+                  title: 'Esta seguro?',
+                  text: "Esta accion no se podrá revertir!",
+                  icon: 'warning',                              {{-- icono --}}
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Si, eliminarlo!',
+                  cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+/*                    Swal.fire(
+                      'Eliminado!',
+                      'Elemento eliminado',
+                      'success'
+                    )*/
+                    this.submit();        //prosigo con el envio del formulario llamado 'formulario-eliminar'
+                  }
+                })
+            });
+        </script>
 @stop
