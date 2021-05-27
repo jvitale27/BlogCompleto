@@ -14,6 +14,11 @@
         {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> este funciona sin problemas--}}
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">    {{-- supuestamente va este --}}
 
+        {{--slot para definir estilos desde plantillas. Es para que funcione Dropzone, etc. --}}
+        @if (isset($mi_css))
+            {{ $mi_css }}
+        @endif
+
         @livewireStyles
 
         <!-- Scripts -->
@@ -37,5 +42,11 @@
         @stack('modals')
 
         @livewireScripts            {{-- scripts de livewire --}}
+
+        {{-- slot para ejecutar scripts desde cualquier plantilla --}}
+        @if (isset($mi_js))
+            {{ $mi_js }}        {{-- slot para ejecutar scripts desde cualquier plantilla --}}
+        @endif
+
     </body>
 </html>

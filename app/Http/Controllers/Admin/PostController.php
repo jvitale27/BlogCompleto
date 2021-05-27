@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Post;
-use App\Models\Category;
-use App\Models\Tag;
 use App\Http\Requests\PostRequest;
-
+use App\Models\Category;
+use App\Models\Post;
+use App\Models\Tag;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -80,6 +80,8 @@ class PostController extends Controller
             $post->tags()->attach($request->tags);     //llamo al metodo tags->attach para crear en la tabla post_tag que las relaciona a ambas, debido a que es una relacion muchos a muchos
         }
 
+        Cache::flush();     //limpio la cache del navegador, para refrescar los cambios en la pagina
+
         return redirect()->route('admin.posts.edit', $post)
                            ->with('info', 'El post se creó con éxito');      //mensaje de sesion
 
@@ -142,6 +144,8 @@ class PostController extends Controller
             $post->tags()->sync($request->tags);     //llamo al metodo tags->sync para actualizar en la tabla post_tag que las relaciona a ambas, debido a que es una relacion muchos a muchos
         }
 
+        Cache::flush();     //limpio la cache del navegador, para refrescar los cambios en la pagina
+
         return redirect()->route('admin.posts.edit', $post)
                            ->with('info', 'El post se actualizó con éxito');      //mensaje de sesion
 
@@ -159,6 +163,8 @@ class PostController extends Controller
         //pero esta vez lo hago mediante el un Observer en App\Observers\PostObserver.php       
 
         $post->delete();
+
+        Cache::flush();     //limpio la cache del navegador, para refrescar los cambios en la pagina
 
         return redirect()->route('admin.posts.index')
                            ->with('info', 'El post se eliminó con éxito');      //mensaje de sesion
