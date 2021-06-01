@@ -2,19 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Post;
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\Tag;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
+
     public function index()
     {
-//    	$posts = Post::where('status', 2)->get();						//todos sin paginar
-//      $posts = Post::where('status', 2)->latest('updated_at')->paginate(8);   //del ultimo al primero por 'updated_at'
-    	$posts = Post::where('status', 2)->latest('id')->paginate(8);	//del ultimo al primero por 'id'
 
+        //si deseo utilizar CACHE para agilizar la muestra de los posts sin consultar tanto a ala DB debo
+        //hacer lo siguiente. De lo contrario solo ejecuto la consulta de $posts = Post::where
+        //el cache se guarda donde indica la vble de entorno CACHE_DRIVER, que se usa en config/cache.php
+        //y puede setearse en .env
+        if(request()->page)                     //si hay paginado, debe haber un cache por pagina
+            $key = 'posts' . request()->page;
+        else
+            $key = 'posts';
+        
+        if (Cache::has( $key))              //si ya hay una consulta igual cargada en cache de archivo, la tomo
+            $posts = Cache::get( $key);
+        else                                //sino consulto a la DB y guardo cache
+        {
+//          $posts = Post::where('status', 2)->get();                       //todos sin paginar
+            $posts = Post::where('status', 2)->latest('id')->paginate(8);   //del ultimo al primero por 'id'
+            Cache::put( $key, $posts);                                  //guardo cache en key='posts{pagina}'
+        }
+        
     	return view('posts.index', compact('posts'));
     }
 

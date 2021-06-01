@@ -78,6 +78,9 @@ class RoleController extends Controller
 
     public function destroy(Role $role)
     {
+
+        $role->permissions()->sync([]);     //llamo al metodo permissions->sync para actualizar en la tabla role_has_permissions que las relaciona a ambas, debido a que es una relacion muchos a muchos. Le paso un array vacio para que quite todas las relaciones de este rol
+
         $role->delete();
 
         return redirect()->route('admin.roles.index')

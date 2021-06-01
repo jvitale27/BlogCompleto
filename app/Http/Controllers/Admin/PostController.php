@@ -80,7 +80,7 @@ class PostController extends Controller
             $post->tags()->attach($request->tags);     //llamo al metodo tags->attach para crear en la tabla post_tag que las relaciona a ambas, debido a que es una relacion muchos a muchos
         }
 
-        Cache::flush();     //limpio la cache del navegador, para refrescar los cambios en la pagina
+        Cache::flush();     //limpio los archivos de cache, para refrescar los cambios en la pagina
 
         return redirect()->route('admin.posts.edit', $post)
                            ->with('info', 'El post se creó con éxito');      //mensaje de sesion
@@ -144,7 +144,7 @@ class PostController extends Controller
             $post->tags()->sync($request->tags);     //llamo al metodo tags->sync para actualizar en la tabla post_tag que las relaciona a ambas, debido a que es una relacion muchos a muchos
         }
 
-        Cache::flush();     //limpio la cache del navegador, para refrescar los cambios en la pagina
+        Cache::flush();     //limpio los archivos de cache, para refrescar los cambios en la pagina
 
         return redirect()->route('admin.posts.edit', $post)
                            ->with('info', 'El post se actualizó con éxito');      //mensaje de sesion
@@ -162,9 +162,11 @@ class PostController extends Controller
         //    Storage::delete($post->image->url); 
         //pero esta vez lo hago mediante el un Observer en App\Observers\PostObserver.php       
 
-        $post->delete();
+        $post->image()->delete();       //borro el registro de la tabla images
 
-        Cache::flush();     //limpio la cache del navegador, para refrescar los cambios en la pagina
+        $post->delete();                //borro el post, de la tabla posts
+
+        Cache::flush();     //limpio los archivos de cache, para refrescar los cambios en la pagina
 
         return redirect()->route('admin.posts.index')
                            ->with('info', 'El post se eliminó con éxito');      //mensaje de sesion

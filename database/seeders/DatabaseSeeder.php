@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
@@ -19,6 +20,9 @@ class DatabaseSeeder extends Seeder
     {
     	Storage::deleteDirectory('posts');	//borro la carpeta public/storage/posts donde almaceno imagenes
     	Storage::makeDirectory('posts');	//creo la carpeta public/storage/posts donde almaceno imagenes
+
+        //limpio los archivos de cache, para refrescar los cambios en la pagina cuando ejecuto los seeders
+        Cache::flush();
 
         //utilizacion de seeders para crear registros. Archivos database\seeders 
         //primero va Role y luego User, sin no puedo vincularlos
