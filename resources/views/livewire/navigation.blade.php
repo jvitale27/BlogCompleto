@@ -1,4 +1,5 @@
 {{-- Las view de Livewire SIEMPRE deben estar encerradas en un solo div padre, no puede haber mas de uno --}}
+{{-- barra de navegacion extraida de https://tailwindui.com/preview --}}
 <div>
   <nav class="bg-gray-800" x-data="{ open: false}">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -8,10 +9,8 @@
         <div class="flex items-center">
 		      <!-- logotipo -->
            <a href="/" class="flex">
-{{--               <img class="h-8 w-8 object-cover object-center" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="">
- --}} 
+              {{-- <img class="h-8 w-8 object-cover object-center" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt=""> --}}
                <img class="h-8 w-8 object-cover object-center" src="{{ Storage::url('logo.png') }}" alt="">
- 
               <span class="ml-3 text-2xl font-bold text-white">Gran BLOG</span>
           </a>
            

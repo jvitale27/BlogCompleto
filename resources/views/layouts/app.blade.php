@@ -30,7 +30,7 @@
 
         <div class="min-h-screen bg-gray-100">
 
-<!-- instancio el componente de livewire 'Navigation' que esta en la carpeta App\Http\Livewire\Navigation.php -->
+            <!-- instancio el componente de livewire 'Navigation' que esta en App\Http\Livewire\Navigation.php y que muestra la barra de navegacion extraida desde https://tailwindui.com/preview -->
             @livewire('navigation')     {{-- siempre lo instancio en minusculas --}}
 
             <!-- Page Content -->

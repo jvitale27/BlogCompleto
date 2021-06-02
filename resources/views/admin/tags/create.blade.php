@@ -31,8 +31,10 @@
     </div>
 @stop
 
-{{-- esta seccion javascript me crea el slug dinamicamente a medida que tipeo en name. --}}
+
 @section('js')
+
+    {{-- esta seccion javascript me crea el slug dinamicamente a medida que tipeo en name. --}}
 	{{-- plugin 'jQuery Plugin stringToSlug' desde https://leocaseiro.com.br/jquery-plugin-string-to-slug/ --}}
     <script src="{{ asset('vendor\jQuery-Plugin-stringToSlug-1.3\jquery.stringToSlug.min.js') }}"></script>
     <script>

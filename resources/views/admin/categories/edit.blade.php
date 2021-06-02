@@ -19,7 +19,8 @@
     <div class="card">
     	<div class="card-body">
             {{-- Abro un formulario 'model' para que se completen los campos con los valores de category --}}
-    		{!! Form::model($category, ['route' => ['admin.categories.update', $category], 'method' => 'put']) !!}	{{-- formulario de collective --}}
+            {{-- 'class' => 'formulario-editar' es el nombre para captar el evento desde el script. Aqui no pregunto confirmacion por lo que no lo utilizo, pero asi es como funciona --}}
+    		{!! Form::model($category, ['route' => ['admin.categories.update', $category], 'method' => 'put', 'class' => 'formulario-editar']) !!}	{{-- formulario de collective --}}
 
                 {{-- incluyo la plantilla en comun --}}
                 @include('admin.categories.partials.form')
@@ -31,8 +32,10 @@
     </div>
 @stop
 
-{{-- esta seccion javascript me crea el slug dinamicamente a medida que tipeo en name. --}}
+
 @section('js')
+
+    {{-- esta seccion javascript me crea el slug dinamicamente a medida que tipeo en name. --}}
 	{{-- plugin 'jQuery Plugin stringToSlug' desde https://leocaseiro.com.br/jquery-plugin-string-to-slug/ --}}
     <script src="{{ asset('vendor\jQuery-Plugin-stringToSlug-1.3\jquery.stringToSlug.min.js') }}"></script>
     <script>
@@ -45,4 +48,17 @@
 		  	});
 		});
     </script>
+
+    {{-- include para incluir cualquier cuadro de dialog desde https://sweetalert2.github.io/ --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- capto el mansaje de session y aviso que ya se elimino con exito utilizando sweetalert2--}}
+    @if (session('info'))
+        <script>
+            Swal.fire(
+               'Actualizado!',
+               'La categoría actualizó con éxito',
+               'success'                    {{-- icono --}}
+            )
+        </script>
+    @endif
 @stop

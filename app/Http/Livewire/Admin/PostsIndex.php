@@ -23,6 +23,7 @@ class PostsIndex extends Component
         $this->resetPage();             //en cada busqueda vuelve a la pagina 1
     }
 
+    //funcion que se ejecuta automaticamente cada vez que cambia algo del componente, una propiedad, etc.
     public function render()
     {
     	$posts = Post::where('user_id', auth()->user()->id)     //los posts del usuario autentificado

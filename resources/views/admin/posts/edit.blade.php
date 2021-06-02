@@ -19,7 +19,8 @@
     <div class="card">
         <div class="card-body">
             {{-- Abro un formulario 'model' para que se completen los campos con los valores de post --}}
-            {!! Form::model($post, ['route' => ['admin.posts.update', $post], 'autocomplete' => 'off', 'files' => true, 'method' => 'put']) !!}   {{-- formulario de collective --}}
+            {{-- 'class' => 'formulario-editar' es el nombre para captar el evento desde el script. Aqui no pregunto confirmacion por lo que no lo utilizo, pero asi es como funciona --}}
+            {!! Form::model($post, ['route' => ['admin.posts.update', $post], 'autocomplete' => 'off', 'files' => true, 'method' => 'put', 'class' => 'formulario-editar']) !!}   {{-- formulario de collective --}}
 
                 {{-- incluyo la plantilla en comun --}}
                 @include('admin.posts.partials.form')
@@ -47,13 +48,11 @@
     </style>
 @stop
 
+
 @section('js')
+
     {{-- plugin 'jQuery Plugin stringToSlug' desde https://leocaseiro.com.br/jquery-plugin-string-to-slug/ --}}
     <script src="{{ asset('vendor\jQuery-Plugin-stringToSlug-1.3\jquery.stringToSlug.min.js') }}"></script>
-
-    {{-- plugin desde CKEditor5 desde https://ckeditor.com/ckeditor-5/download/  para ingresar texto enriquecido--}}
-    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
-
     <script>
     {{--pegado desde 'jThe values Default at Plugin Usage' https://leocaseiro.com.br/jquery-plugin-string-to-slug/--}}
     {{-- esta seccion javascript me crea el slug dinamicamente a medida que tipeo en name. --}}
@@ -64,16 +63,19 @@
                 space: '-'
             });
         });
+    </script>
 
-        {{-- plugin desde CKEditor5 desde https://ckeditor.com/ckeditor-5/download/ para ingresar texto enriquecido--}}
+    {{-- plugin desde CKEditor5 desde https://ckeditor.com/ckeditor-5/download/ para ingresar texto enriquecido--}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+    <script>
         ClassicEditor
-        .create( document.querySelector( '#extract' ) )
+        .create( document.querySelector( '#extract' ) )     {{-- aplica al elemento llamado 'extract' --}}
         .catch( error => {
             console.error( error );
         } );
-        {{-- plugin desde CKEditor5 desde https://ckeditor.com/ckeditor-5/download/ para ingresar texto enriquecido--}}
+
         ClassicEditor
-        .create( document.querySelector( '#body' ) )
+        .create( document.querySelector( '#body' ) )        {{-- aplica al elemento llamado 'body' --}}
         .catch( error => {
             console.error( error );
         } );
@@ -94,4 +96,19 @@
                 reader.readAsDataURL(file);
             }
     </script>
+
+
+    {{-- include para incluir cualquier cuadro de dialog desde https://sweetalert2.github.io/ --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- capto el mansaje de session y aviso que ya se elimino con exito utilizando sweetalert2--}}
+    @if (session('info'))
+        <script>
+            Swal.fire(
+               'Actualizado!',
+               'El post se actualizó con éxito',
+               'success'                    {{-- icono --}}
+            )
+        </script>
+    @endif
+
 @stop

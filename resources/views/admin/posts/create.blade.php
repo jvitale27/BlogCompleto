@@ -18,7 +18,7 @@
 
 	<div class="card">
     	<div class="card-body">
-            {{-- Abro un formulario con 'open' con campos vacios. files' habilita el envio de archivos como objetos --}}
+            {{--Abro un formulario con 'open' con campos vacios. files' habilita el envio de archivos como objetos --}}
     		{!! Form::open(['route' => 'admin.posts.store', 'autocomplete' => 'off', 'files' => true]) !!}	{{-- formulario de collective --}}
 
 				{{-- pongo id de usuario identificado en un campo oculto.--}}
@@ -49,12 +49,9 @@
 @stop
 
 @section('js')
+
 	{{-- plugin 'jQuery Plugin stringToSlug' desde https://leocaseiro.com.br/jquery-plugin-string-to-slug/ --}}
     <script src="{{ asset('vendor\jQuery-Plugin-stringToSlug-1.3\jquery.stringToSlug.min.js') }}"></script>
-
-    {{-- plugin desde CKEditor5 desde https://ckeditor.com/ckeditor-5/download/  para ingresar texto enriquecido--}}
-    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
-
     <script>
     {{--pegado desde 'jThe values Default at Plugin Usage' https://leocaseiro.com.br/jquery-plugin-string-to-slug/--}}
     {{-- esta seccion javascript me crea el slug dinamicamente a medida que tipeo en name. --}}
@@ -65,16 +62,19 @@
 		    	space: '-'
 		  	});
 		});
+    </script>
 
-        {{-- plugin desde CKEditor5 desde https://ckeditor.com/ckeditor-5/download/ para ingresar texto enriquecido--}}
+    {{-- plugin desde CKEditor5 desde https://ckeditor.com/ckeditor-5/download/ para ingresar texto enriquecido--}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+    <script>
         ClassicEditor
-        .create( document.querySelector( '#extract' ) )
+        .create( document.querySelector( '#extract' ) )     {{-- aplica al elemento llamado 'extract' --}}
         .catch( error => {
             console.error( error );
         } );
-        {{-- plugin desde CKEditor5 desde https://ckeditor.com/ckeditor-5/download/ para ingresar texto enriquecido--}}
+
         ClassicEditor
-        .create( document.querySelector( '#body' ) )
+        .create( document.querySelector( '#body' ) )        {{-- aplica al elemento llamado 'body' --}}
         .catch( error => {
             console.error( error );
         } );
@@ -95,4 +95,5 @@
 	            reader.readAsDataURL(file);
 	        }
     </script>
+
 @stop

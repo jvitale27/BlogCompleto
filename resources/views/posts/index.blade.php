@@ -27,7 +27,7 @@
 
 						<h1 class="text-4xl text-white leading-8 font-bold mt-3">
 							<a href="{{ route('posts.show', $post) }}">
-								{!! $post->name !!}
+								{!! $post->name !!} 	{{-- {!! !!} formatea(escapa) texto html con caracteres --}}
 							</a>
 						</h1>
 					</div>

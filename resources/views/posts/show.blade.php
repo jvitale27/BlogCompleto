@@ -6,11 +6,11 @@
 	<div class="container py-8">
 
 		<h1 class="text-4xl font-bold text-gray-600">
-			{!! $post->name !!}
+			{!! $post->name !!} 						{{-- {!! !!} formatea(escapa) texto html con caracteres --}}
 		</h1>
 
 		<div class="text-lg text-gray-500 mb-2">
-			{!! $post->extract !!}
+			{!! $post->extract !!} 						{{-- {!! !!} formatea(escapa) texto html con caracteres --}}
 		</div>
 
 		<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -26,7 +26,7 @@
 				</figure>
 				
 				<div class="text-base text-gray-500 mt-4">
-					{!! $post->body !!}
+					{!! $post->body !!} 			{{-- {!! !!} formatea(escapa) texto html con caracteres --}}
 				</div>
 			</div>
 

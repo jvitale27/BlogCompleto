@@ -41,20 +41,20 @@
     						<td>{{ $category->name }}</td>
 
     						<td width="10px">
-                                @can('admin.categories.edit')           {{-- si tengo el acceso requerido --}}
-        							<a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-primary btn-sm">Editar</a>
-                                @endcan
+                  @can('admin.categories.edit')           {{-- si tengo el acceso requerido --}}
+        						<a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-primary btn-sm">Editar</a>
+                  @endcan
     						</td>
 
     						<td width="10px">
-                                @can('admin.categories.destroy')         {{-- si tengo el acceso requerido --}}
-                                    {{-- doy nombre al formulario para captar el evento desde el script --}}
-        							<form action="{{ route('admin.categories.destroy', $category) }}" class="formulario-eliminar" method="POST">
-        								@csrf
-        								@method('DELETE')
-        								<button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-        							</form>
-                                @endcan
+                  @can('admin.categories.destroy')         {{-- si tengo el acceso requerido --}}
+                    {{-- doy nombre al formulario para captar el evento desde el script --}}
+        						<form action="{{ route('admin.categories.destroy', $category) }}" class="formulario-eliminar" method="POST">
+      								@csrf
+      								@method('DELETE')
+      								<button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+      							</form>
+                  @endcan
     						</td>
 
     					</tr>

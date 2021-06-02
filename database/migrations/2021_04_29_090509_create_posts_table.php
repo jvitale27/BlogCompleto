@@ -18,8 +18,8 @@ class CreatePostsTable extends Migration
 
             $table->string('name');
             $table->string('slug');
-            $table->text('extract')->nullable();            //en status borrador puede estar vacio
-            $table->longText('body')->nullable();           //en status borrador puede estar vacio
+            $table->text('extract')->nullable();            //en status borrador puede estar vacio. 1 to 65,535
+            $table->longText('body')->nullable();           //en status borrador puede estar vacio. 1 to 4,294,967,295
             $table->enum('status', [1, 2])->default(1);    //1 borrador, 2 publicado
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');

@@ -19,7 +19,8 @@
 	<div class="card">
     	<div class="card-body">
             {{-- Abro un formulario 'model' para que se completen los campos con los valores de role --}}
-    		{!! Form::model($role, ['route' => ['admin.roles.update', $role], 'method' => 'put']) !!}	{{-- formulario de collective --}}
+            {{-- 'class' => 'formulario-editar' es el nombre para captar el evento desde el script. Aqui no pregunto confirmacion por lo que no lo utilizo, pero asi es como funciona --}}
+    		{!! Form::model($role, ['route' => ['admin.roles.update', $role], 'method' => 'put', 'class' => 'formulario-editar']) !!}	{{-- formulario de collective --}}
 
                 {{-- incluyo la plantilla en comun --}}
                 @include('admin.roles.partials.form')
@@ -37,5 +38,16 @@
 @stop
 
 @section('js')
-    {{-- <script> console.log('Hi!'); </script> --}}
+    {{-- include para incluir cualquier cuadro de dialog desde https://sweetalert2.github.io/ --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- capto el mansaje de session y aviso que ya se elimino con exito utilizando sweetalert2--}}
+    @if (session('info'))
+        <script>
+            Swal.fire(
+               'Actualizado!',
+               'El rol se actualizó con éxito',
+               'success'                    {{-- icono --}}
+            )
+        </script>
+    @endif
 @stop
