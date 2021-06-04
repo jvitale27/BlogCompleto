@@ -55,8 +55,8 @@
     @if (session('info'))
         <script>
             Swal.fire(
-               'Actualizado!',
-               'La etiqueta se actualizó con éxito',
+               'Guardado!',
+               'La etiqueta se guardó con éxito',
                'success'                    {{-- icono --}}
             )
         </script>

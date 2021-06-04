@@ -12,7 +12,7 @@
 				@if ($loop->first) 						{{-- ejemplo de if dentro de clase --}}
 					md:col-span-2
 				@endif"
-				@if ($post->image)			{{-- si el post tiene imagen, entonces imagen de fondo --}}
+				@if ($post->image)	{{--ejemplo de if dentro de etiqueta. si el post tiene imagen, la pongo --}}
 					style="background-image: url({{ Storage::url($post->image->url) }})"
 				@endif>
 					<div class="w-full h-full px-8 flex flex-col justify-center">

@@ -44,8 +44,8 @@
     @if (session('info'))
         <script>
             Swal.fire(
-               'Actualizado!',
-               'El rol se actualizó con éxito',
+               'Guardado!',
+               'El rol se guardó con éxito',
                'success'                    {{-- icono --}}
             )
         </script>

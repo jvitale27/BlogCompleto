@@ -14,17 +14,25 @@
         {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> este funciona sin problemas--}}
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">    {{-- supuestamente va este --}}
 
+        <!-- 'mi_css' styles -->
         {{--slot para definir estilos desde plantillas. Es para que funcione Dropzone, etc. --}}
         @if (isset($mi_css))
             {{ $mi_css }}
         @endif
 
+        <!-- Livewire styles -->
         @livewireStyles
+
+        <!-- stack 'css' styles -->
+        {{-- aqui puedo incluir codigo 'css' con la sintaxis push('css') de blade, desde mi {{ $slot }} principal --}}
+        @stack('css')
 
         <!-- Scripts -->
         {{-- <script src="{{ asset('js/app.js') }}" defer></script> este funciona sin problemas--}} 
         <script src="{{ mix('js/app.js') }}" defer></script>    {{-- supuestamente va este --}}
+
     </head>
+
     <body class="font-sans antialiased">
         <x-jet-banner />
 
@@ -39,14 +47,21 @@
             </main>
         </div>
 
+        <!-- stack 'modals' -->
         @stack('modals')
 
+        <!-- Livewire scripts -->
         @livewireScripts            {{-- scripts de livewire --}}
 
+        <!-- 'mi_js' scripts -->
         {{-- slot para ejecutar scripts desde cualquier plantilla --}}
         @if (isset($mi_js))
             {{ $mi_js }}        {{-- slot para ejecutar scripts desde cualquier plantilla --}}
         @endif
+
+        <!-- stack 'js' scripts -->
+        {{-- aqui puedo incluir codigo 'js' con la sintaxis push('js') de blade, desde mi {{ $slot }} principal --}}
+        @stack('js')
 
     </body>
 </html>

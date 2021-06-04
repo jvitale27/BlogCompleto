@@ -72,7 +72,7 @@
 
 @section('js')
 
-        {{-- include para incluir cualquier cuadro de dialog desde https://sweetalert2.github.io/ --}}
+        {{-- CDN para incluir cualquier cuadro de dialog desde https://sweetalert2.github.io/ --}}
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         {{-- capto el mansaje de session y aviso que ya se elimino con exito utilizando sweetalert2--}}

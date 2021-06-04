@@ -38,6 +38,7 @@
       	.image-wrapper{
     		position: relative;
     		padding-bottom: 56.25%;
+            background-color: #DCCCCC
     	}
     	.image-wrapper img{
     		position: absolute;

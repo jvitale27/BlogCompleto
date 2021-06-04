@@ -55,8 +55,8 @@
     @if (session('info'))
         <script>
             Swal.fire(
-               'Actualizado!',
-               'La categoría actualizó con éxito',
+               'Guardado!',
+               'La categoría se guardó con éxito',
                'success'                    {{-- icono --}}
             )
         </script>

@@ -38,6 +38,7 @@
         .image-wrapper{
             position: relative;
             padding-bottom: 56.25%;
+            background-color: #DCCCCC            
         }
         .image-wrapper img{
             position: absolute;
@@ -98,14 +99,14 @@
     </script>
 
 
-    {{-- include para incluir cualquier cuadro de dialog desde https://sweetalert2.github.io/ --}}
+    {{-- CDN para incluir cualquier cuadro de dialog desde https://sweetalert2.github.io/ --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- capto el mansaje de session y aviso que ya se elimino con exito utilizando sweetalert2--}}
     @if (session('info'))
         <script>
             Swal.fire(
-               'Actualizado!',
-               'El post se actualizó con éxito',
+               'Guardado!',
+               'El post se guardó con éxito',
                'success'                    {{-- icono --}}
             )
         </script>

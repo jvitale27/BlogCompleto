@@ -71,11 +71,13 @@
 {{-- Imagen --}}
 <div class="row mb-3">
 	<div class="col">
-		<div class="image-wrapper">	{{--ver propiedades en seccion 'css' de create.blade.php o edit.blade.php --}}
+		<div class="image-wrapper">{{--ver propiedades en seccion 'css' de create.blade.php o edit.blade.php --}}
 			@isset ($post->image) 			{{-- utilizo isset y no if porque en create post no esta definida --}}
-				<img id="picture" src="{{ Storage::url($post->image->url) }}">
+				<img id="picture" src="{{ Storage::url($post->image->url) }}"> {{-- el id="picture" se utiliza en la seccion 'js' de create.blade.php o edit.blade.php --}}
 			@else
-				<img id="picture" src="{{ Storage::url('imagen_por_defecto.png') }}">		{{-- el id="picture" se utiliza en la seccion 'js' de create.blade.php o edit.blade.php --}}
+				<img id="picture" src="{{-- {{ Storage::url('imagen_por_defecto.png') }} --}}">
+				<br>
+				-- Sin imagen seleccionada --		
 			@endif
 		</div>
 	</div>
@@ -88,7 +90,7 @@
 		        <span class="text-danger">{{ $message }}</span>
 		    @enderror
 		</div>
-		Lorem ipsum dolor, sit, amet consectetur adipisicing elit. Totam, debitis, autem. Nisi saepe laudantium pariatur iste odio architecto possimus omnis reiciendis fugiat deserunt doloribus laboriosam natus, quasi error incidunt eveniet.
+		Seleccione un archivo de imagen para incluir como fondo del post
 	</div>
 </div>
 
