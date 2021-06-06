@@ -142,6 +142,10 @@
           <div class="mt-3 px-2 space-y-1">
             <a href="{{ route('profile.show') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">Tu perfil</a>
 
+            @can('admin.home')    {{-- verifico si tiene acceso a la administracion --}}
+              <a href="{{ route('admin.home') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">Administracion</a>
+            @endcan
+            
             <form method="POST" action="{{ route('logout') }}">
               @csrf          
               <a href="{{ route('logout') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700" onclick="event.preventDefault();this.closest('form').submit();">
